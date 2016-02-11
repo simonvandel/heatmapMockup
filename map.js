@@ -60,20 +60,31 @@ function changeOpacity() {
 }
 
 function getPoints() {
-  return [
-    new google.maps.LatLng(56.0255000, 9.9220377),
-    new google.maps.LatLng(56.0256500, 9.9211000),
-    new google.maps.LatLng(56.0253500, 9.9210500),
-    new google.maps.LatLng(56.0256000, 9.9219500),
-    new google.maps.LatLng(56.0251500, 9.9225000)
-        ]
+    var totalArray = [];
+    // front row
+    for(i = 0; i < 10; i++) {
+        for(j = 0; j < 3; j++) {
+            var y = 56.0256500 - 0.0000100*j;
+            var x = 9.9212200 + 0.0000500*i;
+            totalArray.push(new google.maps.LatLng(y, x));
+        }
+    }
+    return totalArray;
+  // return [
+  //   new google.maps.LatLng(56.0255000, 9.9220377), // original
+  //   new google.maps.LatLng(56.0256500, 9.9211000), // top left
+  //   new google.maps.LatLng(56.0253500, 9.9210500), // bot left
+  //   new google.maps.LatLng(56.0256000, 9.9219500), // scene
+  //   new google.maps.LatLng(56.0251500, 9.9225000), // bot right
+  //   {location: new google.maps.LatLng(56.0251500, 9.9225000), weight: 20}
+  //       ]
 }
 
 var map, heatmap;
 
 function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 17,
+        zoom: 18,
         center: {lat: 56.0252000, lng: 9.9220377}
     });
 
