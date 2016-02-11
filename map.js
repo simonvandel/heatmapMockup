@@ -61,7 +61,11 @@ function changeOpacity() {
 
 function getPoints() {
   return [
-    new google.maps.LatLng(56.0255000, 9.9220377)
+    new google.maps.LatLng(56.0255000, 9.9220377),
+    new google.maps.LatLng(56.0256500, 9.9211000),
+    new google.maps.LatLng(56.0253500, 9.9210500),
+    new google.maps.LatLng(56.0256000, 9.9219500),
+    new google.maps.LatLng(56.0251500, 9.9225000)
         ]
 }
 
