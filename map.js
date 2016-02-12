@@ -1,7 +1,13 @@
 function rectangularPlot(Coord1, Coord2, people){
-var width = abs(Coord1.x - Coord2.x);
-var height = abs(Coord1.y - Coord2.y);
+var width = Math.abs(Coord1.x - Coord2.x);
+var height = Math.abs(Coord1.y - Coord2.y);
 var totalArray = [];
+
+  totalArray.push(new google.maps.LatLng(56.0255000, 9.9220377)); // original
+  totalArray.push(new google.maps.LatLng(56.0256500, 9.9211000)); // top left
+  totalArray.push(new google.maps.LatLng(56.0253500, 9.9210500)); // bot left
+  totalArray.push(new google.maps.LatLng(56.0256000, 9.9219500)); // scene
+  totalArray.push(new google.maps.LatLng(56.0251500, 9.9225000)); // bot right
   
   for(i = 0; i < people; i++) {
       var y = height * Math.random() + Math.min(Coord1.y , Coord2.y);
@@ -73,7 +79,13 @@ function changeOpacity() {
 }
 
 function getPoints() {
-  return rectangularPlot({'x':56.0256500, 'y':9.9211000},{'x':56.0251500, 'y':9.9225000}, 100);
+  var RetArray[] = rectangularPlot({'x':56.0256500, 'y':9.9211000},{'x':56.0251500, 'y':9.9225000}, 100);
+  RetArray.push(new google.maps.LatLng(56.0255000, 9.9220377)); // original
+  RetArray.push(new google.maps.LatLng(56.0256500, 9.9211000)); // top left
+  RetArray.push(new google.maps.LatLng(56.0253500, 9.9210500)); // bot left
+  RetArray.push(new google.maps.LatLng(56.0256000, 9.9219500)); // scene
+  RetArray.push(new google.maps.LatLng(56.0251500, 9.9225000)); // bot right
+
 
   //  var totalArray = [];
   //  // front row
