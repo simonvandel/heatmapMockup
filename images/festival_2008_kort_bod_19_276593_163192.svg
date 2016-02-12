@@ -9,9 +9,9 @@
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    version="1.1"
    id="svg2"
-   viewBox="0 0 744.09448819 1052.3622047"
-   height="297mm"
-   width="210mm"
+   viewBox="0 0 512.00001 512.00001"
+   height="512"
+   width="512"
    inkscape:version="0.91 r13725"
    sodipodi:docname="festival_2008_kort_bod_19_276593_163192.svg">
   <sodipodi:namedview
@@ -28,12 +28,13 @@
      id="namedview16"
      showgrid="false"
      inkscape:zoom="0.11212869"
-     inkscape:cx="-504.49722"
+     inkscape:cx="-1650.5019"
      inkscape:cy="365.37555"
      inkscape:window-x="-8"
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
-     inkscape:current-layer="svg2" />
+     inkscape:current-layer="svg2"
+     units="px" />
   <defs
      id="defs4">
     <clipPath
@@ -73,7 +74,7 @@
   </metadata>
   <g
      id="layer1"
-     transform="translate(-0.49948539,2048.4995)"
+     transform="matrix(1.0029415,0,0,1.0029414,-514.51113,2025.0774)"
      clip-path="url(#clipPath3350)">
     <g
        clip-path="url(#clipPath3375)"
