@@ -88,17 +88,17 @@ function initMap() {
         center: {lat: 56.0252000, lng: 9.9220377}
     });
 
-    heatmap = new google.maps.visualization.HeatmapLayer({
-        data: getPoints(),
-        map: map
-    });
+    // heatmap = new google.maps.visualization.HeatmapLayer({
+    //     data: getPoints(),
+    //     map: map
+    // });
 
     var imageMapType = new google.maps.ImageMapType({
         getTileUrl: function(coord, zoom) {
     		var sq = {'x': 69148, 'y':40798, 'zoom':17};
             var ss = {'x':coord.x, 'y':coord.y, 'zoom':zoom};
     		if(IsSquareWithin(sq,sq, ss))	{
-        	return "../heatmapMockup/images/festival_2008_kort_bod_" + zoom + "_" + coord.x + "_" + coord.y + ".png";
+        	return "../heatmapMockup/images/festival_2008_kort_bod_" + zoom + "_" + coord.x + "_" + coord.y + ".svg";
             }
         return null;
         },
@@ -106,7 +106,7 @@ function initMap() {
     });
 
     map.overlayMapTypes.push(imageMapType);
-    var opt = { minZoom: 0, maxZoom: 19 };
-    map.setOptions(opt);
-    heatmap.set('dissipating', true);
+    // var opt = { minZoom: 0, maxZoom: 19 };
+    // map.setOptions(opt);
+    // heatmap.set('dissipating', true);
 }
