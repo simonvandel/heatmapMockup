@@ -13,7 +13,7 @@
    height="256"
    width="256"
    inkscape:version="0.91 r13725"
-   sodipodi:docname="festival_2008_kort_bod_19_276592_163193.svg">
+   sodipodi:docname="festival_2008_kort_bod_19_276592_163194.svg">
   <sodipodi:namedview
      pagecolor="#ffffff"
      bordercolor="#666666"
@@ -27,9 +27,9 @@
      inkscape:window-height="837"
      id="namedview15"
      showgrid="false"
-     inkscape:zoom="0.23046875"
-     inkscape:cx="-455.69903"
-     inkscape:cy="311.20432"
+     inkscape:zoom="0.4609375"
+     inkscape:cx="-301.55932"
+     inkscape:cy="256"
      inkscape:window-x="-8"
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
@@ -38,14 +38,14 @@
      id="defs4">
     <clipPath
        clipPathUnits="userSpaceOnUse"
-       id="clipPath3349">
+       id="clipPath3345">
       <rect
-         style="fill:#0000ff;fill-rule:evenodd;stroke:#000000;stroke-width:1.15657187px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-         id="rect3351"
-         width="510.84344"
-         height="510.84341"
-         x="0.57828593"
-         y="540.94043" />
+         style="fill:#0000ff;fill-rule:evenodd;stroke:#000000;stroke-width:0.88376522px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         id="rect3347"
+         width="511.11624"
+         height="511.11624"
+         x="0.44188261"
+         y="540.80408" />
     </clipPath>
   </defs>
   <metadata
@@ -61,11 +61,11 @@
     </rdf:RDF>
   </metadata>
   <g
-     transform="matrix(0.50113201,0,0,0.50113204,-0.2897976,-271.08254)"
+     transform="matrix(0.50086454,0,0,0.50086454,-0.22132332,-270.86956)"
      id="layer1"
-     clip-path="url(#clipPath3349)">
+     clip-path="url(#clipPath3345)">
     <g
-       transform="matrix(0.99998307,0,0,0.99997778,0.00174222,1023.9779)"
+       transform="matrix(0.99998307,0,0,0.99997778,0.00174222,511.97786)"
        id="g3347">
       <path
          id="path3363"

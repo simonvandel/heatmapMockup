@@ -98,7 +98,7 @@ function initMap() {
     		var sq = {'x': 69148, 'y':40798, 'zoom':17};
             var ss = {'x':coord.x, 'y':coord.y, 'zoom':zoom};
     		if(IsSquareWithin(sq,sq, ss))	{
-        	return "../heatmapMockup/images/festival_2008_kort_bod_" + zoom + "_" + coord.x + "_" + coord.y + ".svg";
+        	return "../heatmapMockup/images/festival_2008_kort_bod_" + zoom + "_" + coord.x + "_" + coord.y + ".png";
             }
         return null;
         },
