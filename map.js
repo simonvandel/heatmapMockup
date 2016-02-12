@@ -1,3 +1,16 @@
+function rectangularPlot(Coord1, Coord2, people){
+var width = abs(Coord1.x - Coord2.x);
+var height = abs(Coord1.y - Coord2.y);
+var totalArray = [];
+  
+  for(i = 0; i < people; i++) {
+      var y = height * Math.random() + Math.min(Coord1.y , Coord2.y);
+      var x = width * Math.random() + Math.min(Coord1.x , Coord2.y);
+      totalArray.push(new google.maps.LatLng(y, x));
+  }
+  return totalArray;
+}
+
 function IsSquareWithin(UpLeft, LowRight, target) {    
    if (target.zoom < UpLeft.zoom) return false;    
 
@@ -60,16 +73,18 @@ function changeOpacity() {
 }
 
 function getPoints() {
-    var totalArray = [];
-    // front row
-    for(i = 0; i < 10; i++) {
-        for(j = 0; j < 3; j++) {
-            var y = 56.0256500 - 0.0000100*j;
-            var x = 9.9212200 + 0.0000500*i;
-            totalArray.push(new google.maps.LatLng(y, x));
-        }
-    }
-    return totalArray;
+  return rectangularPlot({'x':56.0256500, 'y':9.9211000},{'x':56.0251500, 'y':9.9225000}, 100);
+
+  //  var totalArray = [];
+  //  // front row
+  //  for(i = 0; i < 10; i++) {
+  //      for(j = 0; j < 3; j++) {
+  //          var y = 56.0256500 - 0.0000100*j;
+  //          var x = 9.9212200 + 0.0000500*i;
+  //          totalArray.push(new google.maps.LatLng(y, x));
+  //      }
+  //  }
+  //   return totalArray;
   // return [
   //   new google.maps.LatLng(56.0255000, 9.9220377), // original
   //   new google.maps.LatLng(56.0256500, 9.9211000), // top left
