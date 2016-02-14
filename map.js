@@ -116,10 +116,10 @@ function getPoints() {
   RetArray = RetArray.concat(curvingBandPlot({'x':56.0257000, 'y':9.9214000}, 0.00055, 0.0006, 150, 215, 75));  
   RetArray = RetArray.concat(curvingBandPlot({'x':56.0257000, 'y':9.9214000}, 0.0006, 0.00065, 145, 215, 50));
   RetArray = RetArray.concat(curvingBandPlot({'x':56.0257000, 'y':9.9214000}, 0.00065, 0.0007, 140, 215, 25));
-  RetArray = RetArray.concat(curvingBandPlot({'x':56.0257000, 'y':9.9214000}, 0.0007, 0.00075, 140, 215, 25));
-  RetArray = RetArray.concat(curvingBandPlot({'x':56.0257000, 'y':9.9214000}, 0.00075, 0.0008, 140, 215, 25));
-  RetArray = RetArray.concat(curvingBandPlot({'x':56.0257000, 'y':9.9214000}, 0.0008, 0.00085, 140, 215, 25));
-  RetArray = RetArray.concat(curvingBandPlot({'x':56.0257000, 'y':9.9214000}, 0.00085, 0.0009, 140, 215, 25));
+  RetArray = RetArray.concat(curvingBandPlot({'x':56.0257000, 'y':9.9214000}, 0.0007, 0.00075, 135, 215, 25));
+  RetArray = RetArray.concat(curvingBandPlot({'x':56.0257000, 'y':9.9214000}, 0.00075, 0.0008, 135, 215, 25));
+  RetArray = RetArray.concat(curvingBandPlot({'x':56.0257000, 'y':9.9214000}, 0.0008, 0.00085, 130, 215, 25));
+  RetArray = RetArray.concat(curvingBandPlot({'x':56.0257000, 'y':9.9214000}, 0.00085, 0.0009, 130, 215, 25));
 
   return RetArray; 
 
