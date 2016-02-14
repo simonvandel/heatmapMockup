@@ -3,19 +3,33 @@ var width = Math.abs(Coord1.x - Coord2.x);
 var height = Math.abs(Coord1.y - Coord2.y);
 var totalArray = [];
 
-  totalArray.push(new google.maps.LatLng(56.0255000, 9.9220377)); // original
-  totalArray.push(new google.maps.LatLng(56.0256500, 9.9211000)); // top left
-  totalArray.push(new google.maps.LatLng(56.0253500, 9.9210500)); // bot left
-  totalArray.push(new google.maps.LatLng(56.0256000, 9.9219500)); // scene
-  totalArray.push(new google.maps.LatLng(56.0251500, 9.9225000)); // bot right
-  
   for(i = 0; i < people; i++) {
       var y = height * Math.random() + Math.min(Coord1.y , Coord2.y);
-      var x = width * Math.random() + Math.min(Coord1.x , Coord2.y);
-      totalArray.push(new google.maps.LatLng(y, x));
+      var x = width * Math.random() + Math.min(Coord1.x , Coord2.x);
+      totalArray.push(new google.maps.LatLng(x,y));
   }
   return totalArray;
 }
+/*function circlePlot(Center, Hight, Width, people){
+
+var ePX = X + (int) (width  * Math.cos(Math.toRadians(t)));
+var ePY = Y + (int) (height * Math.sin(Math.toRadians(t)));
+
+X = xcircle + (r * sine(angle))
+Y = ycircle + (r * cosine(angle))
+
+var width = Math.abs(Coord1.x - Coord2.x);
+var height = Math.abs(Coord1.y - Coord2.y);
+var totalArray = [];
+
+  for(i = 0; i < people; i++) {
+      var y = height * Math.random() + Math.min(Coord1.y , Coord2.y);
+      var x = width * Math.random() + Math.min(Coord1.x , Coord2.x);
+      totalArray.push(new google.maps.LatLng(x,y));
+  }
+  return totalArray;
+}*/
+
 
 function IsSquareWithin(UpLeft, LowRight, target) {    
    if (target.zoom < UpLeft.zoom) return false;    
@@ -66,12 +80,12 @@ function changeGradient() {
         'rgba(127, 0, 63, 1)',
         'rgba(191, 0, 31, 1)',
         'rgba(255, 0, 0, 1)'
-    ]
+    ];
     heatmap.set('gradient', heatmap.get('gradient') ? null : gradient);
 }
 
 function changeRadius() {
-  heatmap.set('radius', (heatmap.get('radius') == 10) ? 20 : 10);
+  heatmap.set('radius', (heatmap.get('radius') == 10) ? 5 : 10);
 }
 
 function changeOpacity() {
@@ -79,13 +93,10 @@ function changeOpacity() {
 }
 
 function getPoints() {
-  var RetArray[] = rectangularPlot({'x':56.0256500, 'y':9.9211000},{'x':56.0251500, 'y':9.9225000}, 100);
-  RetArray.push(new google.maps.LatLng(56.0255000, 9.9220377)); // original
-  RetArray.push(new google.maps.LatLng(56.0256500, 9.9211000)); // top left
-  RetArray.push(new google.maps.LatLng(56.0253500, 9.9210500)); // bot left
-  RetArray.push(new google.maps.LatLng(56.0256000, 9.9219500)); // scene
-  RetArray.push(new google.maps.LatLng(56.0251500, 9.9225000)); // bot right
-
+  var RetArray = rectangularPlot({'x':56.0252250, 'y':9.9211000},{'x':56.0251250, 'y':9.9217000}, 1000);
+  var nwq = RetArray.concat(rectangularPlot({'x':56.0251250, 'y':9.9211000},{'x':56.0250250, 'y':9.9220000}, 200));
+  console.log(nwq);
+  return nwq; 
 
   //  var totalArray = [];
   //  // front row
@@ -115,10 +126,10 @@ function initMap() {
         center: {lat: 56.0252000, lng: 9.9220377}
     });
 
-    // heatmap = new google.maps.visualization.HeatmapLayer({
-    //     data: getPoints(),
-    //     map: map
-    // });
+    heatmap = new google.maps.visualization.HeatmapLayer({
+      data: getPoints(),
+      map: map
+    });
 
     var imageMapType = new google.maps.ImageMapType({
         getTileUrl: function(coord, zoom) {
@@ -133,7 +144,7 @@ function initMap() {
     });
 
     map.overlayMapTypes.push(imageMapType);
-    // var opt = { minZoom: 0, maxZoom: 19 };
-    // map.setOptions(opt);
-    // heatmap.set('dissipating', true);
+    var opt = { minZoom: 0, maxZoom: 19 };
+    map.setOptions(opt);
+    heatmap.set('dissipating', true);
 }
