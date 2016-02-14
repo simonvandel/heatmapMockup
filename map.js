@@ -10,6 +10,22 @@ var totalArray = [];
   }
   return totalArray;
 }
+
+/* This function creates points between two circumferences of circles with the same center and a minimum and maximum angle in degrees.
+This effectively creates a curving band of people, simulating the crowd in front of a stage*/
+function curvingBandPlot(Center, Radius1, Radius2, Angle1, Angle2, people){
+  var totalArray = [];
+  for(i = 0; i < people; i++) {
+    var randomRadius = Math.min(Radius1, Radius2) + Math.random() * Math.abs(Radius1 - Radius2); // Getting a random radius within the given radiuses
+    var randomAngle = Angle1 + Math.random() * Math.abs(Angle1 - Angle2); // Getting a random angle within the given angles in degrees
+    randomAngle = randomAngle * Math.PI / 180; // Converting angle to radians
+    var x = Center.x + randomRadius * Math.cos(randomAngle); // Getting the x coordinate of the random point on the circumference of the random new circle
+    var y = Center.y + randomRadius * Math.sin(randomAngle); // The same for the y coordinate
+    totalArray.push(new google.maps.LatLng(x,y));
+  }
+  return totalArray;
+}
+
 /*function circlePlot(Center, Hight, Width, people){
 
 var ePX = X + (int) (width  * Math.cos(Math.toRadians(t)));
@@ -85,7 +101,7 @@ function changeGradient() {
 }
 
 function changeRadius() {
-  heatmap.set('radius', (heatmap.get('radius') == 10) ? 5 : 10);
+  heatmap.set('radius', (heatmap.get('radius') == 10) ? 1 : 10);
 }
 
 function changeOpacity() {
@@ -93,10 +109,19 @@ function changeOpacity() {
 }
 
 function getPoints() {
-  var RetArray = rectangularPlot({'x':56.0252250, 'y':9.9211000},{'x':56.0251250, 'y':9.9217000}, 1000);
-  var nwq = RetArray.concat(rectangularPlot({'x':56.0251250, 'y':9.9211000},{'x':56.0250250, 'y':9.9220000}, 200));
-  console.log(nwq);
-  return nwq; 
+  var RetArray = [];
+  // RetArray = rectangularPlot({'x':56.0252250, 'y':9.9211000},{'x':56.0251250, 'y':9.9217000}, 1000);
+  // RetArray = RetArray.concat(rectangularPlot({'x':56.0251250, 'y':9.9211000},{'x':56.0250250, 'y':9.9220000}, 200));
+  RetArray = RetArray.concat(curvingBandPlot({'x':56.0257000, 'y':9.9214000}, 0.0005, 0.00055, 155, 205, 150));
+  RetArray = RetArray.concat(curvingBandPlot({'x':56.0257000, 'y':9.9214000}, 0.00055, 0.0006, 150, 215, 75));  
+  RetArray = RetArray.concat(curvingBandPlot({'x':56.0257000, 'y':9.9214000}, 0.0006, 0.00065, 145, 215, 50));
+  RetArray = RetArray.concat(curvingBandPlot({'x':56.0257000, 'y':9.9214000}, 0.00065, 0.0007, 140, 215, 25));
+  RetArray = RetArray.concat(curvingBandPlot({'x':56.0257000, 'y':9.9214000}, 0.0007, 0.00075, 140, 215, 25));
+  RetArray = RetArray.concat(curvingBandPlot({'x':56.0257000, 'y':9.9214000}, 0.00075, 0.0008, 140, 215, 25));
+  RetArray = RetArray.concat(curvingBandPlot({'x':56.0257000, 'y':9.9214000}, 0.0008, 0.00085, 140, 215, 25));
+  RetArray = RetArray.concat(curvingBandPlot({'x':56.0257000, 'y':9.9214000}, 0.00085, 0.0009, 140, 215, 25));
+
+  return RetArray; 
 
   //  var totalArray = [];
   //  // front row
