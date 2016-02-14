@@ -26,25 +26,20 @@ function curvingBandPlot(Center, Radius1, Radius2, Angle1, Angle2, people){
   return totalArray;
 }
 
-/*function circlePlot(Center, Hight, Width, people){
-
-var ePX = X + (int) (width  * Math.cos(Math.toRadians(t)));
-var ePY = Y + (int) (height * Math.sin(Math.toRadians(t)));
-
-X = xcircle + (r * sine(angle))
-Y = ycircle + (r * cosine(angle))
-
-var width = Math.abs(Coord1.x - Coord2.x);
-var height = Math.abs(Coord1.y - Coord2.y);
-var totalArray = [];
-
+function circlePlot(Center, Hight, Width, people){
+  var totalArray = [];
   for(i = 0; i < people; i++) {
-      var y = height * Math.random() + Math.min(Coord1.y , Coord2.y);
-      var x = width * Math.random() + Math.min(Coord1.x , Coord2.x);
-      totalArray.push(new google.maps.LatLng(x,y));
+    var randomHight = Hight * Math.random();
+    var randomWidth = Width * Math.random();
+    var randomAngle = 2 * Math.PI * Math.random();
+
+    var x = Center.x + randomWidth  * Math.cos(randomAngle);
+    var y = Center.y + randomHight * Math.sin(randomAngle);
+
+    totalArray.push(new google.maps.LatLng(x,y));
   }
   return totalArray;
-}*/
+}
 
 
 function IsSquareWithin(UpLeft, LowRight, target) {    
@@ -112,14 +107,16 @@ function getPoints() {
   var RetArray = [];
   // RetArray = rectangularPlot({'x':56.0252250, 'y':9.9211000},{'x':56.0251250, 'y':9.9217000}, 1000);
   // RetArray = RetArray.concat(rectangularPlot({'x':56.0251250, 'y':9.9211000},{'x':56.0250250, 'y':9.9220000}, 200));
-  RetArray = RetArray.concat(curvingBandPlot({'x':56.0257000, 'y':9.9214000}, 0.0005, 0.00055, 155, 205, 150));
-  RetArray = RetArray.concat(curvingBandPlot({'x':56.0257000, 'y':9.9214000}, 0.00055, 0.0006, 150, 215, 75));  
-  RetArray = RetArray.concat(curvingBandPlot({'x':56.0257000, 'y':9.9214000}, 0.0006, 0.00065, 145, 215, 50));
-  RetArray = RetArray.concat(curvingBandPlot({'x':56.0257000, 'y':9.9214000}, 0.00065, 0.0007, 140, 215, 25));
-  RetArray = RetArray.concat(curvingBandPlot({'x':56.0257000, 'y':9.9214000}, 0.0007, 0.00075, 135, 215, 25));
-  RetArray = RetArray.concat(curvingBandPlot({'x':56.0257000, 'y':9.9214000}, 0.00075, 0.0008, 135, 215, 25));
-  RetArray = RetArray.concat(curvingBandPlot({'x':56.0257000, 'y':9.9214000}, 0.0008, 0.00085, 130, 215, 25));
-  RetArray = RetArray.concat(curvingBandPlot({'x':56.0257000, 'y':9.9214000}, 0.00085, 0.0009, 130, 215, 25));
+  RetArray = RetArray.concat(curvingBandPlot({'x':56.0257000, 'y':9.9214000}, 0.0005, 0.00055, 155, 205, 200));
+  RetArray = RetArray.concat(curvingBandPlot({'x':56.0257000, 'y':9.9214000}, 0.00055, 0.0006, 150, 215, 150));  
+  RetArray = RetArray.concat(curvingBandPlot({'x':56.0257000, 'y':9.9214000}, 0.0006, 0.00065, 145, 215, 100));
+  RetArray = RetArray.concat(curvingBandPlot({'x':56.0257000, 'y':9.9214000}, 0.00065, 0.0007, 140, 215, 75));
+  RetArray = RetArray.concat(curvingBandPlot({'x':56.0257000, 'y':9.9214000}, 0.0007, 0.00075, 135, 215, 50));
+  RetArray = RetArray.concat(curvingBandPlot({'x':56.0257000, 'y':9.9214000}, 0.00075, 0.0008, 135, 215, 50));
+  RetArray = RetArray.concat(curvingBandPlot({'x':56.0257000, 'y':9.9214000}, 0.0008, 0.00085, 130, 215, 50));
+  RetArray = RetArray.concat(curvingBandPlot({'x':56.0257000, 'y':9.9214000}, 0.00085, 0.0009, 130, 215, 50));
+  RetArray = RetArray.concat(circlePlot({'x':56.0249500, 'y':9.9225000}, 0.0005, 0.000075, 200));
+  RetArray = RetArray.concat(circlePlot({'x':56.0249500, 'y':9.9225000}, 0.0009, 0.0001, 200));
 
   return RetArray; 
 
