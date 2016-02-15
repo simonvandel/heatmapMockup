@@ -135,7 +135,7 @@ function getGeneralDistribution(){
 
 function getSkewedDistribution(){
   var RetArray = [];
-  RetArray = RetArray.concat(curvingBandPlot({'x':56.0257000, 'y':9.9214000}, 0.0005, 0.00055, 155, 180, 200  ));
+  RetArray = RetArray.concat(curvingBandPlot({'x':56.0257000, 'y':9.9214000}, 0.0005, 0.00055, 155, 180, 200));
   RetArray = RetArray.concat(curvingBandPlot({'x':56.0257000, 'y':9.9214000}, 0.0005, 0.00055, 180, 215, 225));
 
   RetArray = RetArray.concat(curvingBandPlot({'x':56.0257000, 'y':9.9214000}, 0.00055, 0.0006, 150, 180, 75));
@@ -150,17 +150,20 @@ function getSkewedDistribution(){
   RetArray = RetArray.concat(curvingBandPlot({'x':56.0257000, 'y':9.9214000}, 0.0007, 0.00075, 135, 215, 75));
   RetArray = RetArray.concat(curvingBandPlot({'x':56.0257000, 'y':9.9214000}, 0.0007, 0.00075, 215, 235, 75));
 
-  RetArray = RetArray.concat(curvingBandPlot({'x':56.0257000, 'y':9.9214000}, 0.00075, 0.0008, 135, 220, 75));
-  RetArray = RetArray.concat(curvingBandPlot({'x':56.0257000, 'y':9.9214000}, 0.00075, 0.0008, 220, 235, 75));
+  RetArray = RetArray.concat(curvingBandPlot({'x':56.0257000, 'y':9.9214000}, 0.00075, 0.0008, 135, 215, 75));
+  RetArray = RetArray.concat(curvingBandPlot({'x':56.0257000, 'y':9.9214000}, 0.00075, 0.0008, 215, 235, 75));
 
   RetArray = RetArray.concat(curvingBandPlot({'x':56.0257000, 'y':9.9214000}, 0.0008, 0.00085, 130, 225, 50));
-  RetArray = RetArray.concat(curvingBandPlot({'x':56.0257000, 'y':9.9214000}, 0.00085, 0.0009, 225, 235, 50));
+  RetArray = RetArray.concat(curvingBandPlot({'x':56.0257000, 'y':9.9214000}, 0.0008, 0.00085, 225, 235, 75));
+
+  RetArray = RetArray.concat(curvingBandPlot({'x':56.0257000, 'y':9.9214000}, 0.00085, 0.0009, 130, 235, 75));
   
   RetArray = RetArray.concat(circlePlot({'x':56.0249500, 'y':9.9225000}, 0.0005, 0.000075, 200));
   RetArray = RetArray.concat(circlePlot({'x':56.0249500, 'y':9.9225000}, 0.0009, 0.0001, 200));
 
   RetArray = RetArray.concat(circlePlot({'x':56.0247500, 'y':9.9220000}, 0.0005, 0.000075, 200));
   RetArray = RetArray.concat(circlePlot({'x':56.0247500, 'y':9.9220000}, 0.0005, 0.0002, 200));
+  RetArray = RetArray.concat(circlePlot({'x':56.0251500, 'y':9.9208200}, 0.0001, 0.0003, 400));
 
   RetArray = RetArray.concat(rectangularPlot({'x':56.0260000, 'y':9.9207500},{'x':56.0245000, 'y':9.9208500},200));
 
