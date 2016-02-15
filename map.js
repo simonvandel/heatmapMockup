@@ -1,3 +1,4 @@
+var person_id = 0;
 var last = {time : new Date(),    
             x    : -100,         
             y    : -100};       
@@ -12,7 +13,7 @@ var totalArray = [];
   for(i = 0; i < people; i++) {
       var y = height * Math.random() + Math.min(Coord1.y , Coord2.y);
       var x = width * Math.random() + Math.min(Coord1.x , Coord2.x);
-      totalArray.push(new google.maps.LatLng(x,y));
+      totalArray.push({ 'id': person_id++, 'latlng': new google.maps.LatLng(x,y) });
   }
   return totalArray;
 }
@@ -27,7 +28,7 @@ function curvingBandPlot(Center, Radius1, Radius2, Angle1, Angle2, people){
     randomAngle = randomAngle * Math.PI / 180; // Converting angle to radians
     var x = Center.x + randomRadius * Math.cos(randomAngle); // Getting the x coordinate of the random point on the circumference of the random new circle
     var y = Center.y + randomRadius * Math.sin(randomAngle); // The same for the y coordinate
-    totalArray.push(new google.maps.LatLng(x,y));
+    totalArray.push({ 'id': person_id++, 'latlng': new google.maps.LatLng(x,y) });
   }
   return totalArray;
 }
@@ -42,7 +43,7 @@ function circlePlot(Center, Hight, Width, people){
     var x = Center.x + randomWidth  * Math.cos(randomAngle);
     var y = Center.y + randomHight * Math.sin(randomAngle);
 
-    totalArray.push(new google.maps.LatLng(x,y));
+    totalArray.push({ 'id': person_id++, 'latlng': new google.maps.LatLng(x,y) });
   }
   return totalArray;
 }
@@ -195,6 +196,7 @@ function throttle_events(event) {
 };
 
 var map, heatmap;
+var points;
 
 function initMap() {
     map_div = document.getElementById("map")
@@ -206,8 +208,10 @@ function initMap() {
 
     map_div.addEventListener("mousemove", throttle_events, true);
 
+    points = getPoints().map(function(dot) { return dot.latlng });
+    
     heatmap = new google.maps.visualization.HeatmapLayer({
-      data: getPoints(),
+      data: points,
       map: map
     });
 
@@ -227,4 +231,24 @@ function initMap() {
     var opt = { minZoom: 0, maxZoom: 19 };
     map.setOptions(opt);
     heatmap.set('dissipating', true);
+    update();
+}
+
+function getRan(min, max) {
+    return Math.random() * (max - min) + min;
+}
+
+function update() {
+	setTimeout(update, 500);
+
+	var newPoints = points.map(function(point) {
+		
+		x = point.lat() + getRan(-100,100) * 0.0000001;
+		y = point.lng() + getRan(-100,100) * 0.0000001;
+		return new google.maps.LatLng(x,y); 
+	} );
+
+	points = newPoints;
+
+	heatmap.setData(points);
 }
