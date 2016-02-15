@@ -1,3 +1,4 @@
+var person_id = 0;
 var last = {time : new Date(),    
             x    : -100,         
             y    : -100};       
@@ -12,7 +13,7 @@ var totalArray = [];
   for(i = 0; i < people; i++) {
       var y = height * Math.random() + Math.min(Coord1.y , Coord2.y);
       var x = width * Math.random() + Math.min(Coord1.x , Coord2.x);
-      totalArray.push(new google.maps.LatLng(x,y));
+      totalArray.push({ 'id': person_id++, 'latlng': new google.maps.LatLng(x,y) });
   }
   return totalArray;
 }
@@ -27,7 +28,7 @@ function curvingBandPlot(Center, Radius1, Radius2, Angle1, Angle2, people){
     randomAngle = randomAngle * Math.PI / 180; // Converting angle to radians
     var x = Center.x + randomRadius * Math.cos(randomAngle); // Getting the x coordinate of the random point on the circumference of the random new circle
     var y = Center.y + randomRadius * Math.sin(randomAngle); // The same for the y coordinate
-    totalArray.push(new google.maps.LatLng(x,y));
+    totalArray.push({ 'id': person_id++, 'latlng': new google.maps.LatLng(x,y) });
   }
   return totalArray;
 }
@@ -42,7 +43,7 @@ function circlePlot(Center, Hight, Width, people){
     var x = Center.x + randomWidth  * Math.cos(randomAngle);
     var y = Center.y + randomHight * Math.sin(randomAngle);
 
-    totalArray.push(new google.maps.LatLng(x,y));
+    totalArray.push({ 'id': person_id++, 'latlng': new google.maps.LatLng(x,y) });
   }
   return totalArray;
 }
@@ -204,7 +205,7 @@ function initMap() {
 
     map_div.addEventListener("mousemove", throttle_events, true);
 
-    points = getPoints();
+    points = getPoints().map(function(dot) { return dot.latlng });
     
     heatmap = new google.maps.visualization.HeatmapLayer({
       data: points,
