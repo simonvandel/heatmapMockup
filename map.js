@@ -110,7 +110,6 @@ function changeOpacity() {
 }
 
 function getPoints() {
-    console.log("dfgdf");
   var RetArray = [];
   // RetArray = rectangularPlot({'x':56.0252250, 'y':9.9211000},{'x':56.0251250, 'y':9.9217000}, 1000);
   // RetArray = RetArray.concat(rectangularPlot({'x':56.0251250, 'y':9.9211000},{'x':56.0250250, 'y':9.9220000}, 200));
@@ -173,6 +172,7 @@ function throttle_events(event) {
 };
 
 var map, heatmap;
+var points;
 
 function initMap() {
     map_div = document.getElementById("map")
@@ -184,8 +184,10 @@ function initMap() {
 
     map_div.addEventListener("mousemove", throttle_events, true);
 
+    points = getPoints();
+    
     heatmap = new google.maps.visualization.HeatmapLayer({
-      data: getPoints(),
+      data: points,
       map: map
     });
 
@@ -205,4 +207,24 @@ function initMap() {
     var opt = { minZoom: 0, maxZoom: 19 };
     map.setOptions(opt);
     heatmap.set('dissipating', true);
+    update();
+}
+
+function getRan(min, max) {
+    return Math.random() * (max - min) + min;
+}
+
+function update() {
+	setTimeout(update, 500);
+
+	var newPoints = points.map(function(point) {
+		
+		x = point.lat() + getRan(-100,100) * 0.0000001;
+		y = point.lng() + getRan(-100,100) * 0.0000001;
+		return new google.maps.LatLng(x,y); 
+	} );
+
+	points = newPoints;
+
+	heatmap.setData(points);
 }
