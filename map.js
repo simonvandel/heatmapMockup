@@ -110,8 +110,11 @@ function changeOpacity() {
   heatmap.set('opacity', heatmap.get('opacity') ? null : 0.2);
 }
 
+var movingCircle;
+
 function getGeneralDistribution(){
   var RetArray = [];
+
   RetArray = RetArray.concat(curvingBandPlot({'x':56.0257000, 'y':9.9214000}, 0.0005, 0.00055, 155, 215, 300));
   RetArray = RetArray.concat(curvingBandPlot({'x':56.0257000, 'y':9.9214000}, 0.00055, 0.0006, 150, 215, 250));  
   RetArray = RetArray.concat(curvingBandPlot({'x':56.0257000, 'y':9.9214000}, 0.0006, 0.00065, 145, 220, 200));
@@ -126,6 +129,10 @@ function getGeneralDistribution(){
 
   RetArray = RetArray.concat(circlePlot({'x':56.0247500, 'y':9.9220000}, 0.0005, 0.000075, 200));
   RetArray = RetArray.concat(circlePlot({'x':56.0247500, 'y':9.9220000}, 0.0005, 0.0002, 200));
+
+  RetArray = RetArray.concat(circlePlot({'x':56.0247000, 'y':9.9209500}, 0.0001, 0.0002, 100));
+  movingCircle = circlePlot({'x':56.0247000, 'y':9.9209500}, 0.00005, 0.0001, 150);
+  RetArray = RetArray.concat(movingCircle);
 
   RetArray = RetArray.concat(rectangularPlot({'x':56.0260000, 'y':9.9207500},{'x':56.0245000, 'y':9.9208500},200));
 
@@ -174,8 +181,8 @@ function getSkewedDistribution(){
 }
 
 function getPoints() {
-  return getSkewedDistribution();
-  //return getGeneralDistribution();
+  //return getSkewedDistribution();
+  return getGeneralDistribution();
 }
 
 function throttle_events(event) {
