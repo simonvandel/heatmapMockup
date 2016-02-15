@@ -109,18 +109,16 @@ function changeOpacity() {
   heatmap.set('opacity', heatmap.get('opacity') ? null : 0.2);
 }
 
-function getPoints() {
+function getGeneralDistribution(){
   var RetArray = [];
-  // RetArray = rectangularPlot({'x':56.0252250, 'y':9.9211000},{'x':56.0251250, 'y':9.9217000}, 1000);
-  // RetArray = RetArray.concat(rectangularPlot({'x':56.0251250, 'y':9.9211000},{'x':56.0250250, 'y':9.9220000}, 200));
-  RetArray = RetArray.concat(curvingBandPlot({'x':56.0257000, 'y':9.9214000}, 0.0005, 0.00055, 155, 205, 200));
-  RetArray = RetArray.concat(curvingBandPlot({'x':56.0257000, 'y':9.9214000}, 0.00055, 0.0006, 150, 215, 150));  
-  RetArray = RetArray.concat(curvingBandPlot({'x':56.0257000, 'y':9.9214000}, 0.0006, 0.00065, 145, 215, 100));
-  RetArray = RetArray.concat(curvingBandPlot({'x':56.0257000, 'y':9.9214000}, 0.00065, 0.0007, 140, 215, 75));
-  RetArray = RetArray.concat(curvingBandPlot({'x':56.0257000, 'y':9.9214000}, 0.0007, 0.00075, 135, 215, 50));
-  RetArray = RetArray.concat(curvingBandPlot({'x':56.0257000, 'y':9.9214000}, 0.00075, 0.0008, 135, 215, 50));
-  RetArray = RetArray.concat(curvingBandPlot({'x':56.0257000, 'y':9.9214000}, 0.0008, 0.00085, 130, 215, 50));
-  RetArray = RetArray.concat(curvingBandPlot({'x':56.0257000, 'y':9.9214000}, 0.00085, 0.0009, 130, 215, 50));
+  RetArray = RetArray.concat(curvingBandPlot({'x':56.0257000, 'y':9.9214000}, 0.0005, 0.00055, 155, 215, 300));
+  RetArray = RetArray.concat(curvingBandPlot({'x':56.0257000, 'y':9.9214000}, 0.00055, 0.0006, 150, 215, 250));  
+  RetArray = RetArray.concat(curvingBandPlot({'x':56.0257000, 'y':9.9214000}, 0.0006, 0.00065, 145, 220, 200));
+  RetArray = RetArray.concat(curvingBandPlot({'x':56.0257000, 'y':9.9214000}, 0.00065, 0.0007, 140, 225, 150));
+  RetArray = RetArray.concat(curvingBandPlot({'x':56.0257000, 'y':9.9214000}, 0.0007, 0.00075, 135, 225, 100));
+  RetArray = RetArray.concat(curvingBandPlot({'x':56.0257000, 'y':9.9214000}, 0.00075, 0.0008, 135, 225, 75));
+  RetArray = RetArray.concat(curvingBandPlot({'x':56.0257000, 'y':9.9214000}, 0.0008, 0.00085, 130, 225, 50));
+  RetArray = RetArray.concat(curvingBandPlot({'x':56.0257000, 'y':9.9214000}, 0.00085, 0.0009, 130, 225, 50));
   
   RetArray = RetArray.concat(circlePlot({'x':56.0249500, 'y':9.9225000}, 0.0005, 0.000075, 200));
   RetArray = RetArray.concat(circlePlot({'x':56.0249500, 'y':9.9225000}, 0.0009, 0.0001, 200));
@@ -133,25 +131,47 @@ function getPoints() {
   RetArray = RetArray.concat(rectangularPlot({'x':56.0260000, 'y':9.9206700},{'x':56.0244800, 'y':9.9233900},500));
 
   return RetArray; 
+}
 
-  //  var totalArray = [];
-  //  // front row
-  //  for(i = 0; i < 10; i++) {
-  //      for(j = 0; j < 3; j++) {
-  //          var y = 56.0256500 - 0.0000100*j;
-  //          var x = 9.9212200 + 0.0000500*i;
-  //          totalArray.push(new google.maps.LatLng(y, x));
-  //      }
-  //  }
-  //   return totalArray;
-  // return [
-  //   new google.maps.LatLng(56.0255000, 9.9220377), // original
-  //   new google.maps.LatLng(56.0256500, 9.9211000), // top left
-  //   new google.maps.LatLng(56.0253500, 9.9210500), // bot left
-  //   new google.maps.LatLng(56.0256000, 9.9219500), // scene
-  //   new google.maps.LatLng(56.0251500, 9.9225000), // bot right
-  //   {location: new google.maps.LatLng(56.0251500, 9.9225000), weight: 20}
-  //       ]
+function getSkewedDistribution(){
+  var RetArray = [];
+  RetArray = RetArray.concat(curvingBandPlot({'x':56.0257000, 'y':9.9214000}, 0.0005, 0.00055, 155, 180, 200  ));
+  RetArray = RetArray.concat(curvingBandPlot({'x':56.0257000, 'y':9.9214000}, 0.0005, 0.00055, 180, 215, 225));
+
+  RetArray = RetArray.concat(curvingBandPlot({'x':56.0257000, 'y':9.9214000}, 0.00055, 0.0006, 150, 180, 75));
+  RetArray = RetArray.concat(curvingBandPlot({'x':56.0257000, 'y':9.9214000}, 0.00055, 0.0006, 180, 215, 175));
+
+  RetArray = RetArray.concat(curvingBandPlot({'x':56.0257000, 'y':9.9214000}, 0.0006, 0.00065, 145, 200, 100));
+  RetArray = RetArray.concat(curvingBandPlot({'x':56.0257000, 'y':9.9214000}, 0.0006, 0.00065, 200, 220, 125));
+
+  RetArray = RetArray.concat(curvingBandPlot({'x':56.0257000, 'y':9.9214000}, 0.00065, 0.0007, 140, 210, 75));
+  RetArray = RetArray.concat(curvingBandPlot({'x':56.0257000, 'y':9.9214000}, 0.00065, 0.0007, 210, 225, 125));
+
+  RetArray = RetArray.concat(curvingBandPlot({'x':56.0257000, 'y':9.9214000}, 0.0007, 0.00075, 135, 215, 75));
+  RetArray = RetArray.concat(curvingBandPlot({'x':56.0257000, 'y':9.9214000}, 0.0007, 0.00075, 215, 235, 75));
+
+  RetArray = RetArray.concat(curvingBandPlot({'x':56.0257000, 'y':9.9214000}, 0.00075, 0.0008, 135, 220, 75));
+  RetArray = RetArray.concat(curvingBandPlot({'x':56.0257000, 'y':9.9214000}, 0.00075, 0.0008, 220, 235, 75));
+
+  RetArray = RetArray.concat(curvingBandPlot({'x':56.0257000, 'y':9.9214000}, 0.0008, 0.00085, 130, 225, 50));
+  RetArray = RetArray.concat(curvingBandPlot({'x':56.0257000, 'y':9.9214000}, 0.00085, 0.0009, 225, 235, 50));
+  
+  RetArray = RetArray.concat(circlePlot({'x':56.0249500, 'y':9.9225000}, 0.0005, 0.000075, 200));
+  RetArray = RetArray.concat(circlePlot({'x':56.0249500, 'y':9.9225000}, 0.0009, 0.0001, 200));
+
+  RetArray = RetArray.concat(circlePlot({'x':56.0247500, 'y':9.9220000}, 0.0005, 0.000075, 200));
+  RetArray = RetArray.concat(circlePlot({'x':56.0247500, 'y':9.9220000}, 0.0005, 0.0002, 200));
+
+  RetArray = RetArray.concat(rectangularPlot({'x':56.0260000, 'y':9.9207500},{'x':56.0245000, 'y':9.9208500},200));
+
+  RetArray = RetArray.concat(rectangularPlot({'x':56.0260000, 'y':9.9206700},{'x':56.0244800, 'y':9.9233900},500));
+
+  return RetArray; 
+}
+
+function getPoints() {
+  return getSkewedDistribution();
+  //return getGeneralDistribution();
 }
 
 function throttle_events(event) {
