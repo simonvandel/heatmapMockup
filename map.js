@@ -1,3 +1,9 @@
+var last = {time : new Date(),    
+            x    : -100,         
+            y    : -100};       
+var period = 100; 
+var space  = 2;  
+
 function rectangularPlot(Coord1, Coord2, people){
 var width = Math.abs(Coord1.x - Coord2.x);
 var height = Math.abs(Coord1.y - Coord2.y);
@@ -104,6 +110,7 @@ function changeOpacity() {
 }
 
 function getPoints() {
+    console.log("dfgdf");
   var RetArray = [];
   // RetArray = rectangularPlot({'x':56.0252250, 'y':9.9211000},{'x':56.0251250, 'y':9.9217000}, 1000);
   // RetArray = RetArray.concat(rectangularPlot({'x':56.0251250, 'y':9.9211000},{'x':56.0250250, 'y':9.9220000}, 200));
@@ -148,13 +155,34 @@ function getPoints() {
   //       ]
 }
 
+function throttle_events(event) {
+    var now = new Date();
+    var distance = Math.sqrt(Math.pow(event.clientX - last.x, 2) + Math.pow(event.clientY - last.y, 2));
+    var time = now.getTime() - last.time.getTime();
+    if (distance * time < space * period) {    //event arrived too soon or mouse moved too little or both
+        if (event.stopPropagation) { // W3C/addEventListener()
+            event.stopPropagation();
+        } else { // Older IE.
+            event.cancelBubble = true;
+        };
+    } else {
+        last.time = now;
+        last.x    = event.clientX;
+        last.y    = event.clientY;
+    };
+};
+
 var map, heatmap;
 
 function initMap() {
+    map_div = document.getElementById("map")
+
     map = new google.maps.Map(document.getElementById('map'), {
         zoom: 18,
         center: {lat: 56.0252000, lng: 9.9220377}
     });
+
+    map_div.addEventListener("mousemove", throttle_events, true);
 
     heatmap = new google.maps.visualization.HeatmapLayer({
       data: getPoints(),
