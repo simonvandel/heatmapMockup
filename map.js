@@ -110,7 +110,7 @@ function changeOpacity() {
   heatmap.set('opacity', heatmap.get('opacity') ? null : 0.2);
 }
 
-var movingCircle;
+var movingCircle; //wtf is this doing here?
 
 function getGeneralDistribution(){
   var RetArray = [];
@@ -180,9 +180,26 @@ function getSkewedDistribution(){
   return RetArray; 
 }
 
+function getParkenEntryDistribution(){
+  var RetArray = [];  
+  RetArray = RetArray.concat(circlePlot({'x':55.702764,'y':12.569747},0.0005, 0.000075, 50)); //ParkCorner
+  RetArray = RetArray.concat(curvingBandPlot({'x':55.702546, 'y':12.572356}, 0.00092, 0.0012, 130, 235, 150)); //south corner outside 
+  RetArray = RetArray.concat(curvingBandPlot({'x':55.706507, 'y':12.573261}, 0.00485, 0.0051, 200, 220, 100)); //Oster Alle
+  RetArray = RetArray.concat(curvingBandPlot({'x':55.707636, 'y':12.575171}, 0.00485, 0.0051, 198, 215, 100)); //north longside stands
+  RetArray = RetArray.concat(curvingBandPlot({'x':55.706767, 'y':12.573629}, 0.00485, 0.0051, 190, 215, 100)); //south longside stands
+  RetArray = RetArray.concat(curvingBandPlot({'x':55.701860, 'y':12.572483}, 0.0015, 0.0018, 305, 345, 100)); //north broadside stands
+  RetArray = RetArray.concat(curvingBandPlot({'x':55.700800, 'y':12.574000}, 0.0015, 0.0018, 315, 345, 100)); //south broadside stands
+    
+
+  //RetArray = RetArray.concat(curvingBandPlot({'x':55.702741, 'y':12.572283}, 0.0009, 0.0010, 0, 360, 200));
+  //RetArray = RetArray.concat(circlePlot({'x':55.702741, 'y':12.572283}, 0.001, 0.001, 10000));
+  return RetArray;
+}
+
 function getPoints() {
   //return getSkewedDistribution();
-  return getGeneralDistribution();
+  //return getGeneralDistribution();
+  return getParkenEntryDistribution();
 }
 
 function throttle_events(event) {
@@ -209,8 +226,9 @@ function initMap() {
     map_div = document.getElementById("map")
 
     map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 18,
-        center: {lat: 56.0252000, lng: 9.9220377}
+        zoom: 17,
+        //center: {lat: 56.0252000, lng: 9.9220377} //SmukFest
+        center: {lat: 55.702688, lng: 12.572201} //Parken
     });
 
     map_div.addEventListener("mousemove", throttle_events, true);
