@@ -18,7 +18,7 @@ var totalArray = [];
   return totalArray;
 }
 
-/* This function creates points between two circumferences of circles with the same center and a minimum and maximum angle in degrees.
+/* This function creates random points between two circumferences of circles with the same center and a minimum and maximum angle in degrees.
 This effectively creates a curving band of people, simulating the crowd in front of a stage*/
 function curvingBandPlot(Center, Radius1, Radius2, Angle1, Angle2, people){
   var totalArray = [];
@@ -238,7 +238,7 @@ function initMap() {
     var opt = { minZoom: 0, maxZoom: 19 };
     map.setOptions(opt);
     heatmap.set('dissipating', true);
-    update();
+    //update();
 }
 
 function getRan(min, max) {
