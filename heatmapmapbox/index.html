@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8 />
+<title>Heatmap from markers</title>
+<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+<script src='https://api.mapbox.com/mapbox.js/v2.3.0/mapbox.js'></script>
+<link href='https://api.mapbox.com/mapbox.js/v2.3.0/mapbox.css' rel='stylesheet' />
+<style>
+  body { margin:0; padding:0; }
+  #map { position:absolute; top:0; bottom:0; width:100%; }
+</style>
+</head>
+<body>
+<script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-heat/v0.1.3/leaflet-heat.js'></script>
+<div id='map'></div>
+
+<script>
+var person_id = 0;
+
+var scale = 0.05;
+
+function rectangularPlot(Coord1, Coord2, people){
+var width = Math.abs(Coord1.x - Coord2.x);
+var height = Math.abs(Coord1.y - Coord2.y);
+var totalArray = [];
+
+  for(i = 0; i < people; i++) {
+      var y = height * Math.random() + Math.min(Coord1.y , Coord2.y);
+      var x = width * Math.random() + Math.min(Coord1.x , Coord2.x);
+      totalArray.push({ 'id': person_id++, 'latlng': [x,y,scale] });
+  }
+  return totalArray;
+}
+
+/* This function creates points between two circumferences of circles with the same center and a minimum and maximum angle in degrees.
+This effectively creates a curving band of people, simulating the crowd in front of a stage*/
+function curvingBandPlot(Center, Radius1, Radius2, Angle1, Angle2, people){
+  var totalArray = [];
+  for(i = 0; i < people; i++) {
+    var randomRadius = Math.min(Radius1, Radius2) + Math.random() * Math.abs(Radius1 - Radius2); // Getting a random radius within the given radiuses
+    var randomAngle = Angle1 + Math.random() * Math.abs(Angle1 - Angle2); // Getting a random angle within the given angles in degrees
+    randomAngle = randomAngle * Math.PI / 180; // Converting angle to radians
+    var x = Center.x + randomRadius * Math.cos(randomAngle); // Getting the x coordinate of the random point on the circumference of the random new circle
+    var y = Center.y + randomRadius * Math.sin(randomAngle); // The same for the y coordinate
+    totalArray.push({ 'id': person_id++, 'latlng': [x,y,scale] });
+  }
+  return totalArray;
+}
+
+function circlePlot(Center, Hight, Width, people){
+  var totalArray = [];
+  for(i = 0; i < people; i++) {
+    var randomHight = Hight * Math.random();
+    var randomWidth = Width * Math.random();
+    var randomAngle = 2 * Math.PI * Math.random();
+
+    var x = Center.x + randomWidth  * Math.cos(randomAngle);
+    var y = Center.y + randomHight * Math.sin(randomAngle);
+
+    totalArray.push({ 'id': person_id++, 'latlng': [x,y,scale] });
+  }
+  return totalArray;
+}
+
+
+function IsSquareWithin(UpLeft, LowRight, target) {    
+   if (target.zoom < UpLeft.zoom) return false;    
+
+   i = target.zoom;
+   for (i; i > UpLeft.zoom; i = target.zoom) {
+       ZoomOut(target);
+   }
+
+   if (
+       target.x >= UpLeft.x &&
+       target.x <= LowRight.x &&
+       target.y >= UpLeft.y &&
+       target.y <= LowRight.y
+      ) { return true;} else
+          return false;
+}
+
+function ZoomOut(target) {  
+    target.x = Math.floor(target.x / 2); // assuming regular integer division
+    target.y = Math.floor(target.y / 2); // assuming regular integer division
+    target.zoom -= 1;
+}
+
+function ZoomIn(target) {  
+    target.x = target.x * 2;
+    target.y = target.y * 2;
+    target.zoom += 1;
+}
+
+function getGeneralDistribution(){
+  var RetArray = [];
+
+  RetArray = RetArray.concat(curvingBandPlot({'x':56.0257000, 'y':9.9214000}, 0.0005, 0.00055, 155, 215, 300));
+  RetArray = RetArray.concat(curvingBandPlot({'x':56.0257000, 'y':9.9214000}, 0.00055, 0.0006, 150, 215, 250));  
+  RetArray = RetArray.concat(curvingBandPlot({'x':56.0257000, 'y':9.9214000}, 0.0006, 0.00065, 145, 220, 200));
+  RetArray = RetArray.concat(curvingBandPlot({'x':56.0257000, 'y':9.9214000}, 0.00065, 0.0007, 140, 225, 150));
+  RetArray = RetArray.concat(curvingBandPlot({'x':56.0257000, 'y':9.9214000}, 0.0007, 0.00075, 135, 225, 100));
+  RetArray = RetArray.concat(curvingBandPlot({'x':56.0257000, 'y':9.9214000}, 0.00075, 0.0008, 135, 225, 75));
+  RetArray = RetArray.concat(curvingBandPlot({'x':56.0257000, 'y':9.9214000}, 0.0008, 0.00085, 130, 225, 50));
+  RetArray = RetArray.concat(curvingBandPlot({'x':56.0257000, 'y':9.9214000}, 0.00085, 0.0009, 130, 225, 50));
+  
+  RetArray = RetArray.concat(circlePlot({'x':56.0249500, 'y':9.9225000}, 0.0005, 0.000075, 200));
+  RetArray = RetArray.concat(circlePlot({'x':56.0249500, 'y':9.9225000}, 0.0009, 0.0001, 200));
+
+  RetArray = RetArray.concat(circlePlot({'x':56.0247500, 'y':9.9220000}, 0.0005, 0.000075, 200));
+  RetArray = RetArray.concat(circlePlot({'x':56.0247500, 'y':9.9220000}, 0.0005, 0.0002, 200));
+
+  RetArray = RetArray.concat(circlePlot({'x':56.0247000, 'y':9.9209500}, 0.0001, 0.0002, 100));
+  movingCircle = circlePlot({'x':56.0247000, 'y':9.9209500}, 0.00005, 0.0001, 150);
+  RetArray = RetArray.concat(movingCircle);
+
+  RetArray = RetArray.concat(rectangularPlot({'x':56.0260000, 'y':9.9207500},{'x':56.0245000, 'y':9.9208500},200));
+
+  RetArray = RetArray.concat(rectangularPlot({'x':56.0260000, 'y':9.9206700},{'x':56.0244800, 'y':9.9233900},500));
+
+  return RetArray; 
+}
+
+function getSkewedDistribution(){
+  var RetArray = [];
+  RetArray = RetArray.concat(curvingBandPlot({'x':56.0257000, 'y':9.9214000}, 0.0005, 0.00055, 155, 180, 200));
+  RetArray = RetArray.concat(curvingBandPlot({'x':56.0257000, 'y':9.9214000}, 0.0005, 0.00055, 180, 215, 225));
+
+  RetArray = RetArray.concat(curvingBandPlot({'x':56.0257000, 'y':9.9214000}, 0.00055, 0.0006, 150, 180, 75));
+  RetArray = RetArray.concat(curvingBandPlot({'x':56.0257000, 'y':9.9214000}, 0.00055, 0.0006, 180, 215, 175));
+
+  RetArray = RetArray.concat(curvingBandPlot({'x':56.0257000, 'y':9.9214000}, 0.0006, 0.00065, 145, 200, 100));
+  RetArray = RetArray.concat(curvingBandPlot({'x':56.0257000, 'y':9.9214000}, 0.0006, 0.00065, 200, 220, 125));
+
+  RetArray = RetArray.concat(curvingBandPlot({'x':56.0257000, 'y':9.9214000}, 0.00065, 0.0007, 140, 210, 75));
+  RetArray = RetArray.concat(curvingBandPlot({'x':56.0257000, 'y':9.9214000}, 0.00065, 0.0007, 210, 225, 125));
+
+  RetArray = RetArray.concat(curvingBandPlot({'x':56.0257000, 'y':9.9214000}, 0.0007, 0.00075, 135, 215, 75));
+  RetArray = RetArray.concat(curvingBandPlot({'x':56.0257000, 'y':9.9214000}, 0.0007, 0.00075, 215, 235, 75));
+
+  RetArray = RetArray.concat(curvingBandPlot({'x':56.0257000, 'y':9.9214000}, 0.00075, 0.0008, 135, 215, 75));
+  RetArray = RetArray.concat(curvingBandPlot({'x':56.0257000, 'y':9.9214000}, 0.00075, 0.0008, 215, 235, 75));
+
+  RetArray = RetArray.concat(curvingBandPlot({'x':56.0257000, 'y':9.9214000}, 0.0008, 0.00085, 130, 225, 50));
+  RetArray = RetArray.concat(curvingBandPlot({'x':56.0257000, 'y':9.9214000}, 0.0008, 0.00085, 225, 235, 75));
+
+  RetArray = RetArray.concat(curvingBandPlot({'x':56.0257000, 'y':9.9214000}, 0.00085, 0.0009, 130, 235, 75));
+  
+  RetArray = RetArray.concat(circlePlot({'x':56.0249500, 'y':9.9225000}, 0.0005, 0.000075, 200));
+  RetArray = RetArray.concat(circlePlot({'x':56.0249500, 'y':9.9225000}, 0.0009, 0.0001, 200));
+
+  RetArray = RetArray.concat(circlePlot({'x':56.0247500, 'y':9.9220000}, 0.0005, 0.000075, 200));
+  RetArray = RetArray.concat(circlePlot({'x':56.0247500, 'y':9.9220000}, 0.0005, 0.0002, 200));
+  RetArray = RetArray.concat(circlePlot({'x':56.0251500, 'y':9.9208200}, 0.0001, 0.0003, 400));
+
+  RetArray = RetArray.concat(rectangularPlot({'x':56.0260000, 'y':9.9207500},{'x':56.0245000, 'y':9.9208500},200));
+
+  RetArray = RetArray.concat(rectangularPlot({'x':56.0260000, 'y':9.9206700},{'x':56.0244800, 'y':9.9233900},500));
+
+  return RetArray; 
+}
+
+function getPoints() {
+  //return getSkewedDistribution();
+  return getGeneralDistribution();
+}
+
+
+
+
+
+L.mapbox.accessToken = 'pk.eyJ1IjoiemFuZGVyZGsiLCJhIjoiY2lrdGlwYTJnMDAwaHdvbTRjNHF0OHFyMSJ9.HL6ah-cAwDso6lsDfXmVyA';
+var map = L.mapbox.map('map', 'mapbox.streets'),
+    // The maxZoom states which zoom the markers are fully opaque at -
+    // in this case, there are few markers far apart, so we set it low.
+
+
+    arr = getPoints().map(function (e) { return e.latlng });
+    heat = L.heatLayer(arr, { maxZoom: 12 }).addTo(map);
+    console.log(heat);
+    // arr.forEach( function(dot) {
+    //     heat.addLatLng(dot.latlng);
+    // } );
+
+    
+</script>
+</body>
+</html>
