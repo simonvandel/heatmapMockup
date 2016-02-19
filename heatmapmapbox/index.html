@@ -18,7 +18,7 @@
 <script>
 var person_id = 0;
 
-var scale = 0.05;
+var scale = 1;
 
 function rectangularPlot(Coord1, Coord2, people){
 var width = Math.abs(Coord1.x - Coord2.x);
@@ -177,7 +177,7 @@ var map = L.mapbox.map('map', 'mapbox.streets'),
 
 
     arr = getPoints().map(function (e) { return e.latlng });
-    heat = L.heatLayer(arr, { maxZoom: 12 }).addTo(map);
+    heat = L.heatLayer(arr, { radius:5,  maxZoom: 12, blur: 10 }).addTo(map);
     console.log(heat);
     // arr.forEach( function(dot) {
     //     heat.addLatLng(dot.latlng);
