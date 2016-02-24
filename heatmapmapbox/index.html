@@ -250,10 +250,11 @@ function getParkenEntryDistribution2(){
 function getParkenEntryDistribution3(){
   var RetArray = [];  
   RetArray = RetArray.concat(curvingBandPlot({'x':55.701860, 'y':12.572483}, 0.0015, 0.0016, 315, 335, 100)); //north broadside stands
-  RetArray = RetArray.concat(curvingBandPlot({'x':55.707636, 'y':12.575171}, 0.00485, 0.0051, 198, 215, 50)); //north longside stands
+  RetArray = RetArray.concat(curvingBandPlot({'x':55.707500, 'y':12.575250}, 0.00485, 0.0051, 198, 215, 50)); //north longside stands
   RetArray = RetArray.concat(curvingBandPlot({'x':55.706767, 'y':12.573629}, 0.00485, 0.0051, 190, 215, 50)); //south longside stands
   RetArray = RetArray.concat(curvingBandPlot({'x':55.701860, 'y':12.572483}, 0.0015, 0.0018, 305, 345, 50)); //north broadside stands
-  RetArray = RetArray.concat(curvingBandPlot({'x':55.700800, 'y':12.574000}, 0.0015, 0.0018, 315, 345, 50)); //south broadside stands
+  RetArray = RetArray.concat(curvingBandPlot({'x':55.700800, 'y':12.574000}, 0.0015, 0.0018, 310, 345, 100)); //south broadside stands
+  RetArray = RetArray.concat(hollowCirclePlot({'x':55.702700,'y':12.572350},0.0017, 0.001, 0.0009, 0.0004, 100)); //general distribution
   return RetArray;
 }
 
@@ -442,13 +443,13 @@ L.mapbox.accessToken = 'pk.eyJ1IjoiemFuZGVyZGsiLCJhIjoiY2lrdGlwYTJnMDAwaHdvbTRjN
     heat = L.heatLayer(arr.map(function (e) { return e.latlng }), { radius:5,  maxZoom: 12, blur: 10 });
 
     arr2 = getParkenEntryDistribution1();
-    heat2 = L.heatLayer(arr2.map(function (e) { return e.latlng }), { gradient: {0.4: 'blue', 0.65: 'lime', 1: 'red'},  radius:5,  maxZoom: 12, blur: 10 });
+    heat2 = L.heatLayer(arr2.map(function (e) { return e.latlng }), { gradient: {0.4: 'green', 0.5: 'blue', 0.8: 'red'},  radius:5,  maxZoom: 12, blur: 10 });
 
     arr3 = getParkenEntryDistribution2();
     heat3 = L.heatLayer(arr3.map(function (e) { return e.latlng }), { radius:5,  maxZoom: 12, blur: 10 });
 
     arr4 = getParkenEntryDistribution3();
-    heat4 = L.heatLayer(arr4.map(function (e) { return e.latlng }), {  gradient: {0.4: 'blue', 0.65: 'lime', 1: 'red'}, radius:5,  maxZoom: 12, blur: 10 });
+    heat4 = L.heatLayer(arr4.map(function (e) { return e.latlng }), {  gradient: {0.4: 'green', 0.5: 'blue', 0.8: 'red'}, radius:5,  maxZoom: 12, blur: 10 });
 
 
     var overlayType0 = {active:false, overlayId:0, name:"Densitet" };
