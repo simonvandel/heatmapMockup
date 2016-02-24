@@ -148,6 +148,20 @@ function circlePlot(Center, Hight, Width, people){
   return totalArray;
 }
 
+function hollowCirclePlot(Center, Hight0, Hight1, Width0, Width1, people){
+  var totalArray = [];
+  for(i = 0; i < people; i++) {
+    var randomHight = Math.abs(Hight1 - Hight0) * Math.random() + Math.min(Hight0, Hight1);
+    var randomWidth = Math.abs(Width1 - Width0) * Math.random() + Math.min(Width0, Width1);
+    var randomAngle = 2 * Math.PI * Math.random();
+
+    var x = Center.x + randomWidth  * Math.cos(randomAngle);
+    var y = Center.y + randomHight * Math.sin(randomAngle);
+
+    totalArray.push({ 'id': person_id++, 'latlng': [x,y,scale] });
+  }
+  return totalArray;
+}
 
 function IsSquareWithin(UpLeft, LowRight, target) {    
    if (target.zoom < UpLeft.zoom) return false;    
@@ -209,10 +223,10 @@ function getGeneralDistribution(){
 
 function getParkenEntryDistribution0(){
   var RetArray = [];  
-  RetArray = RetArray.concat(circlePlot({'x':55.702764,'y':12.569747},0.0005, 0.000075, 50)); //ParkCorner
-  RetArray = RetArray.concat(curvingBandPlot({'x':55.702546, 'y':12.572356}, 0.00092, 0.0012, 130, 235, 150)); //south corner outside 
-  RetArray = RetArray.concat(curvingBandPlot({'x':55.706507, 'y':12.573261}, 0.00485, 0.0051, 200, 220, 100)); //Oster Alle
-  RetArray = RetArray.concat(circlePlot({'x':55.701900,'y':12.573300},0.00025, 0.00035, 100)); //East entrance
+  RetArray = RetArray.concat(circlePlot({'x':55.702764,'y':12.569747},0.0005, 0.000075, 100)); //ParkCorner
+  RetArray = RetArray.concat(curvingBandPlot({'x':55.702546, 'y':12.572356}, 0.00092, 0.0012, 130, 235, 400)); //south corner outside 
+  RetArray = RetArray.concat(curvingBandPlot({'x':55.706507, 'y':12.573261}, 0.00485, 0.0051, 200, 220, 200)); //Oster Alle
+  RetArray = RetArray.concat(circlePlot({'x':55.701900,'y':12.573300},0.00025, 0.00035, 750)); //East entrance
   return RetArray;
 }
 
@@ -225,10 +239,11 @@ function getParkenEntryDistribution1(){
 
 function getParkenEntryDistribution2(){
   var RetArray = [];  
-  RetArray = RetArray.concat(curvingBandPlot({'x':55.707636, 'y':12.575171}, 0.00485, 0.0051, 198, 215, 200)); //north longside stands
-  RetArray = RetArray.concat(curvingBandPlot({'x':55.706767, 'y':12.573629}, 0.00485, 0.0051, 190, 215, 200)); //south longside stands
-  RetArray = RetArray.concat(curvingBandPlot({'x':55.701860, 'y':12.572483}, 0.0015, 0.0018, 305, 345, 200)); //north broadside stands
-  RetArray = RetArray.concat(curvingBandPlot({'x':55.700800, 'y':12.574000}, 0.0015, 0.0018, 315, 345, 200)); //south broadside stands
+  RetArray = RetArray.concat(curvingBandPlot({'x':55.707500, 'y':12.575250}, 0.00485, 0.0051, 198, 215, 400)); //north longside stands
+  RetArray = RetArray.concat(curvingBandPlot({'x':55.706767, 'y':12.573629}, 0.00485, 0.0051, 190, 215, 400)); //south longside stands
+  RetArray = RetArray.concat(curvingBandPlot({'x':55.701860, 'y':12.572483}, 0.0015, 0.0018, 305, 345, 400)); //north broadside stands
+  RetArray = RetArray.concat(curvingBandPlot({'x':55.700800, 'y':12.574000}, 0.0015, 0.0018, 310, 345, 1000)); //south broadside stands
+  RetArray = RetArray.concat(hollowCirclePlot({'x':55.702700,'y':12.572350},0.0017, 0.001, 0.0009, 0.0004, 500)); //general distribution
   return RetArray;
 }
 
