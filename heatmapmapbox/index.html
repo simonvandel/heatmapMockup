@@ -420,9 +420,20 @@ L.mapbox.accessToken = 'pk.eyJ1IjoiemFuZGVyZGsiLCJhIjoiY2lrdGlwYTJnMDAwaHdvbTRjN
     addLevel(level0);
     addLevel(level1);
     
+    var test = update();
 
     function update() {
-         
+    	arr = getParkenEntryDistribution0();
+    	heat = L.heatLayer(arr.map(function (e) { return e.latlng }), { radius:5,  maxZoom: 12, blur: 10 });
+
+    	arr2 = getParkenEntryDistribution1();
+    	heat2 = L.heatLayer(arr2.map(function (e) { return e.latlng }), { gradient: {0.4: 'blue', 0.65: 'lime', 1: 'red'},  radius:5,  maxZoom: 12, blur: 10 });
+
+    	arr3 = getParkenEntryDistribution2();
+    	heat3 = L.heatLayer(arr3.map(function (e) { return e.latlng }), { radius:5,  maxZoom: 12, blur: 10 });
+
+    	arr4 = getParkenEntryDistribution3();
+    	heat4 = L.heatLayer(arr4.map(function (e) { return e.latlng }), {  gradient: {0.4: 'blue', 0.65: 'lime', 1: 'red'}, radius:5,  maxZoom: 12, blur: 10 });
         setTimeout(update, 1000);
     }
     
