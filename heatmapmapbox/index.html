@@ -408,6 +408,33 @@ function addLevel(level) {
     layers2.appendChild(link);
 }
 
+function addFullscreenButton() {
+    var link = document.createElement('a');
+        link.href = '#';
+        link.className = '';
+        link.innerHTML = "Fullscreen";
+
+
+    link.onclick = function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var doc = window.document;
+        var docEl = doc.documentElement;
+
+        var requestFullScreen = docEl.requestFullscreen || docEl.mozRequestFullScreen || docEl.webkitRequestFullScreen || docEl.msRequestFullscreen;
+        var cancelFullScreen = doc.exitFullscreen || doc.mozCancelFullScreen || doc.webkitExitFullscreen || doc.msExitFullscreen;
+
+        if(!doc.fullscreenElement && !doc.mozFullScreenElement && !doc.webkitFullscreenElement && !doc.msFullscreenElement) {
+          requestFullScreen.call(docEl);
+        }
+        else {
+          cancelFullScreen.call(doc);
+        }
+    }
+
+    layers1.appendChild(link);
+};
+
 L.mapbox.accessToken = 'pk.eyJ1IjoiemFuZGVyZGsiLCJhIjoiY2lrdGlwYTJnMDAwaHdvbTRjNHF0OHFyMSJ9.HL6ah-cAwDso6lsDfXmVyA';
     var map = L.mapbox.map('map', 'mapbox.streets').setView([55.702764, 12.572047], 17);
 
@@ -434,6 +461,7 @@ L.mapbox.accessToken = 'pk.eyJ1IjoiemFuZGVyZGsiLCJhIjoiY2lrdGlwYTJnMDAwaHdvbTRjN
     addOverlayType(overlayType1);
     addLevel(level0);
     addLevel(level1);
+    addFullscreenButton();
     
     var test = update();
 
