@@ -4,7 +4,6 @@
 <meta charset=utf-8 />
 <title>Parken demo</title>
 <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
-<meta name="mobile-web-app-capable" content="yes">
 <script src ="https://code.jquery.com/jquery-2.2.1.min.js"></script>
 <script src='https://api.mapbox.com/mapbox.js/v2.3.0/mapbox.js'></script>
 <link href='https://api.mapbox.com/mapbox.js/v2.3.0/mapbox.css' rel='stylesheet' />
@@ -420,10 +419,21 @@ L.mapbox.accessToken = 'pk.eyJ1IjoiemFuZGVyZGsiLCJhIjoiY2lrdGlwYTJnMDAwaHdvbTRjN
     addOverlayType(overlayType1);
     addLevel(level0);
     addLevel(level1);
-
+    
+    var test = update();
 
     function update() {
-         
+    	arr = getParkenEntryDistribution0();
+    	heat = L.heatLayer(arr.map(function (e) { return e.latlng }), { radius:5,  maxZoom: 12, blur: 10 });
+
+    	arr2 = getParkenEntryDistribution1();
+    	heat2 = L.heatLayer(arr2.map(function (e) { return e.latlng }), { gradient: {0.4: 'blue', 0.65: 'lime', 1: 'red'},  radius:5,  maxZoom: 12, blur: 10 });
+
+    	arr3 = getParkenEntryDistribution2();
+    	heat3 = L.heatLayer(arr3.map(function (e) { return e.latlng }), { radius:5,  maxZoom: 12, blur: 10 });
+
+    	arr4 = getParkenEntryDistribution3();
+    	heat4 = L.heatLayer(arr4.map(function (e) { return e.latlng }), {  gradient: {0.4: 'blue', 0.65: 'lime', 1: 'red'}, radius:5,  maxZoom: 12, blur: 10 });
         setTimeout(update, 1000);
     }
     
