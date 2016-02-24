@@ -207,19 +207,38 @@ function getGeneralDistribution(){
   return RetArray; 
 }
 
-function getParkenEntryDistribution(){
+function getParkenEntryDistribution0(){
   var RetArray = [];  
   RetArray = RetArray.concat(circlePlot({'x':55.702764,'y':12.569747},0.0005, 0.000075, 50)); //ParkCorner
   RetArray = RetArray.concat(curvingBandPlot({'x':55.702546, 'y':12.572356}, 0.00092, 0.0012, 130, 235, 150)); //south corner outside 
   RetArray = RetArray.concat(curvingBandPlot({'x':55.706507, 'y':12.573261}, 0.00485, 0.0051, 200, 220, 100)); //Oster Alle
-  RetArray = RetArray.concat(curvingBandPlot({'x':55.707636, 'y':12.575171}, 0.00485, 0.0051, 198, 215, 100)); //north longside stands
-  RetArray = RetArray.concat(curvingBandPlot({'x':55.706767, 'y':12.573629}, 0.00485, 0.0051, 190, 215, 100)); //south longside stands
-  RetArray = RetArray.concat(curvingBandPlot({'x':55.701860, 'y':12.572483}, 0.0015, 0.0018, 305, 345, 100)); //north broadside stands
-  RetArray = RetArray.concat(curvingBandPlot({'x':55.700800, 'y':12.574000}, 0.0015, 0.0018, 315, 345, 100)); //south broadside stands
-    
+  RetArray = RetArray.concat(circlePlot({'x':55.701900,'y':12.573300},0.00025, 0.00035, 100)); //East entrance
+  return RetArray;
+}
 
-  //RetArray = RetArray.concat(curvingBandPlot({'x':55.702741, 'y':12.572283}, 0.0009, 0.0010, 0, 360, 200));
-  //RetArray = RetArray.concat(circlePlot({'x':55.702741, 'y':12.572283}, 0.001, 0.001, 10000));
+function getParkenEntryDistribution1(){
+  var RetArray = [];  
+  RetArray = RetArray.concat(curvingBandPlot({'x':55.702546, 'y':12.572356}, 0.00092, 0.0012, 130, 235, 50)); //south corner outside 
+  RetArray = RetArray.concat(circlePlot({'x':55.701900,'y':12.573300},0.00015, 0.00025, 250)); //East entrance
+  return RetArray;
+}
+
+function getParkenEntryDistribution2(){
+  var RetArray = [];  
+  RetArray = RetArray.concat(curvingBandPlot({'x':55.707636, 'y':12.575171}, 0.00485, 0.0051, 198, 215, 200)); //north longside stands
+  RetArray = RetArray.concat(curvingBandPlot({'x':55.706767, 'y':12.573629}, 0.00485, 0.0051, 190, 215, 200)); //south longside stands
+  RetArray = RetArray.concat(curvingBandPlot({'x':55.701860, 'y':12.572483}, 0.0015, 0.0018, 305, 345, 200)); //north broadside stands
+  RetArray = RetArray.concat(curvingBandPlot({'x':55.700800, 'y':12.574000}, 0.0015, 0.0018, 315, 345, 200)); //south broadside stands
+  return RetArray;
+}
+
+function getParkenEntryDistribution3(){
+  var RetArray = [];  
+  RetArray = RetArray.concat(curvingBandPlot({'x':55.701860, 'y':12.572483}, 0.0015, 0.0016, 315, 335, 100)); //north broadside stands
+  RetArray = RetArray.concat(curvingBandPlot({'x':55.707636, 'y':12.575171}, 0.00485, 0.0051, 198, 215, 50)); //north longside stands
+  RetArray = RetArray.concat(curvingBandPlot({'x':55.706767, 'y':12.573629}, 0.00485, 0.0051, 190, 215, 50)); //south longside stands
+  RetArray = RetArray.concat(curvingBandPlot({'x':55.701860, 'y':12.572483}, 0.0015, 0.0018, 305, 345, 50)); //north broadside stands
+  RetArray = RetArray.concat(curvingBandPlot({'x':55.700800, 'y':12.574000}, 0.0015, 0.0018, 315, 345, 50)); //south broadside stands
   return RetArray;
 }
 
@@ -325,8 +344,12 @@ function addLevel(level) {
     var link = document.createElement('a');
         link.href = '#';
         link.className = '';
-        link.innerHTML = "Level " + level.levelId;
-        link.id = "level" + level.levelId;
+        if(level.levelId == 0){
+        	link.innerHTML = "Stuen";
+    	} else {
+        	link.innerHTML = level.levelId + ". Etage";
+    	}
+    	link.id = "level" + level.levelId;
         if (level.levelId == 0) {
             link.className = 'active';
         }
@@ -373,21 +396,21 @@ function addLevel(level) {
 L.mapbox.accessToken = 'pk.eyJ1IjoiemFuZGVyZGsiLCJhIjoiY2lrdGlwYTJnMDAwaHdvbTRjNHF0OHFyMSJ9.HL6ah-cAwDso6lsDfXmVyA';
     var map = L.mapbox.map('map', 'mapbox.streets').setView([55.702764, 12.572047], 17);
 
-    arr = getPoints();
+    arr = getParkenEntryDistribution0();
     heat = L.heatLayer(arr.map(function (e) { return e.latlng }), { radius:5,  maxZoom: 12, blur: 10 });
 
-    arr2 = getPoints();
+    arr2 = getParkenEntryDistribution1();
     heat2 = L.heatLayer(arr2.map(function (e) { return e.latlng }), { gradient: {0.4: 'blue', 0.65: 'lime', 1: 'red'},  radius:5,  maxZoom: 12, blur: 10 });
 
-    arr3 = getPoints();
+    arr3 = getParkenEntryDistribution2();
     heat3 = L.heatLayer(arr3.map(function (e) { return e.latlng }), { radius:5,  maxZoom: 12, blur: 10 });
 
-    arr4 = getPoints();
+    arr4 = getParkenEntryDistribution3();
     heat4 = L.heatLayer(arr4.map(function (e) { return e.latlng }), {  gradient: {0.4: 'blue', 0.65: 'lime', 1: 'red'}, radius:5,  maxZoom: 12, blur: 10 });
 
 
-    var overlayType0 = {active:false, overlayId:0, name:"heatmap0" };
-    var overlayType1 = {active:false, overlayId:1, name:"heatmap1" };
+    var overlayType0 = {active:false, overlayId:0, name:"Densitet" };
+    var overlayType1 = {active:false, overlayId:1, name:"Turbulens" };
     
     var level0 = { levelId: 0, layers: [ { active: false, overlayId:0, points:arr,  layer:heat }, { active: false, overlayId:1, points:arr2, layer:heat2 } ] };
     var level1 = { levelId: 1, layers: [ { active: false, overlayId:0, points:arr3, layer:heat3 }, { active: false, overlayId:1, points:arr4, layer:heat4 } ] };
