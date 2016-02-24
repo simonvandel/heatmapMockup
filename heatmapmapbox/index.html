@@ -4,9 +4,11 @@
 <meta charset=utf-8 />
 <title>Parken demo</title>
 <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 <script src ="https://code.jquery.com/jquery-2.2.1.min.js"></script>
 <script src='https://api.mapbox.com/mapbox.js/v2.3.0/mapbox.js'></script>
 <link href='https://api.mapbox.com/mapbox.js/v2.3.0/mapbox.css' rel='stylesheet' />
+
 
 <style>
   body { margin:0; padding:0; }
@@ -412,8 +414,16 @@ function addLevel(level) {
 function addFullscreenButton() {
     var link = document.createElement('a');
         link.href = '#';
-        link.className = '';
-        link.innerHTML = "Fullscreen";
+        //link.className = "icon-fullscreen";
+        link.style = "display:table;";
+
+
+    var iconChild = document.createElement('i');
+        iconChild.href = '#';
+                   iconChild.className = "fa fa-arrows-alt";
+                   iconChild.style = "display:table-cell;vertical-align:middle;text-align:center";
+
+    link.appendChild(iconChild);
 
 
     link.onclick = function(e) {
@@ -433,7 +443,7 @@ function addFullscreenButton() {
         }
     }
 
-    layers1.appendChild(link);
+    document.getElementsByClassName("leaflet-control-zoom leaflet-bar leaflet-control")[0].appendChild(link);
 };
 
 L.mapbox.accessToken = 'pk.eyJ1IjoiemFuZGVyZGsiLCJhIjoiY2lrdGlwYTJnMDAwaHdvbTRjNHF0OHFyMSJ9.HL6ah-cAwDso6lsDfXmVyA';
