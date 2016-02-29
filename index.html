@@ -10,7 +10,7 @@
              https://maps.googleapis.com/maps/api/js?v=3.16&key=AIzaSyBbbaPPFHzjmm_vu9AFkJFk7VWQuKoPM1c&sensor=false
         src="https://maps.googleapis.com/maps/api/js?v=3.16&key=AIzaSyDOo5aru3mm17aoD70gLS5NvRVXJAidVBU&sensor=false&libraries=visualization&callback=initMap"></script>
 
-    <script>
+<script>
     
 var person_id = 0;
 var last = {time : new Date(),    
@@ -259,7 +259,7 @@ function initMap() {
     		var sq = {'x': 69148, 'y':40798, 'zoom':17};
             var ss = {'x':coord.x, 'y':coord.y, 'zoom':zoom};
     		if(IsSquareWithin(sq,sq, ss))	{
-        	return "/images/festival_2008_kort_bod_" + zoom + "_" + coord.x + "_" + coord.y + ".svg";
+        	return "https://rawgit.com/simonvandel/heatmapMockup/master/images/festival_2008_kort_bod_" + zoom + "_" + coord.x + "_" + coord.y + ".svg";
             }
         return null;
         },
