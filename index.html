@@ -212,8 +212,8 @@ function getParkenEntryDistribution(){
 
 function getPoints() {
   //return getSkewedDistribution();
-  //return getGeneralDistribution();
-  return getParkenEntryDistribution();
+  return getGeneralDistribution();
+  // return getParkenEntryDistribution();
 }
 
 function throttle_events(event) {
@@ -241,8 +241,8 @@ function initMap() {
 
     map = new google.maps.Map(document.getElementById('map'), {
         zoom: 17,
-        //center: {lat: 56.0252000, lng: 9.9220377} //SmukFest
-        center: {lat: 55.702688, lng: 12.572201} //Parken
+        center: {lat: 56.0252000, lng: 9.9220377} //SmukFest
+        // center: {lat: 55.702688, lng: 12.572201} //Parken
     });
 
     map_div.addEventListener("mousemove", throttle_events, true);
