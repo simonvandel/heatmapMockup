@@ -7,8 +7,8 @@
 <meta name="mobile-web-app-capable" content="yes"> <!-- Support for web app in chrome for Android -->
 <script src ="https://code.jquery.com/jquery-2.2.1.min.js"></script>
 <script src='https://api.mapbox.com/mapbox.js/v2.3.0/mapbox.js'></script>
-<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.15.0/mapbox-gl.js'></script>
-<link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.15.0/mapbox-gl.css' rel='stylesheet' />
+<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.13.1/mapbox-gl.js'></script>
+<link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.13.1/mapbox-gl.css' rel='stylesheet' />
 <link href='https://api.mapbox.com/mapbox.js/v2.3.0/mapbox.css' rel='stylesheet' />
 
 
@@ -169,8 +169,8 @@ function hollowCirclePlot(Center, Hight0, Hight1, Width0, Width1, people){
   return totalArray;
 }
 
-function IsSquareWithin(UpLeft, LowRight, target) {    
-   if (target.zoom < UpLeft.zoom) return false;    
+function IsSquareWithin(UpLeft, LowRight, target) {
+   if (target.zoom < UpLeft.zoom) return false;
 
    i = target.zoom;
    for (i; i > UpLeft.zoom; i = target.zoom) {
@@ -186,13 +186,13 @@ function IsSquareWithin(UpLeft, LowRight, target) {
           return false;
 }
 
-function ZoomOut(target) {  
+function ZoomOut(target) {
     target.x = Math.floor(target.x / 2); // assuming regular integer division
     target.y = Math.floor(target.y / 2); // assuming regular integer division
     target.zoom -= 1;
 }
 
-function ZoomIn(target) {  
+function ZoomIn(target) {
     target.x = target.x * 2;
     target.y = target.y * 2;
     target.zoom += 1;
@@ -202,14 +202,14 @@ function getSmukFest1Density(){
   var RetArray = [];
 
   RetArray = RetArray.concat(curvingBandPlot({'x':56.0257000, 'y':9.9214000}, 0.0005, 0.00055, 155, 215, 300));
-  RetArray = RetArray.concat(curvingBandPlot({'x':56.0257000, 'y':9.9214000}, 0.00055, 0.0006, 150, 215, 250));  
+  RetArray = RetArray.concat(curvingBandPlot({'x':56.0257000, 'y':9.9214000}, 0.00055, 0.0006, 150, 215, 250));
   RetArray = RetArray.concat(curvingBandPlot({'x':56.0257000, 'y':9.9214000}, 0.0006, 0.00065, 145, 220, 200));
   RetArray = RetArray.concat(curvingBandPlot({'x':56.0257000, 'y':9.9214000}, 0.00065, 0.0007, 140, 225, 150));
   RetArray = RetArray.concat(curvingBandPlot({'x':56.0257000, 'y':9.9214000}, 0.0007, 0.00075, 135, 225, 100));
   RetArray = RetArray.concat(curvingBandPlot({'x':56.0257000, 'y':9.9214000}, 0.00075, 0.0008, 135, 225, 75));
   RetArray = RetArray.concat(curvingBandPlot({'x':56.0257000, 'y':9.9214000}, 0.0008, 0.00085, 130, 225, 50));
   RetArray = RetArray.concat(curvingBandPlot({'x':56.0257000, 'y':9.9214000}, 0.00085, 0.0009, 130, 225, 50));
-  
+
   RetArray = RetArray.concat(circlePlot({'x':56.0249500, 'y':9.9225000}, 0.0005, 0.000075, 200));
   RetArray = RetArray.concat(circlePlot({'x':56.0249500, 'y':9.9225000}, 0.0009, 0.0001, 200));
 
@@ -224,14 +224,14 @@ function getSmukFest1Density(){
 
   RetArray = RetArray.concat(rectangularPlot({'x':56.0260000, 'y':9.9206700},{'x':56.0244800, 'y':9.9233900},500));
 
-  return RetArray; 
+  return RetArray;
 }
 
 function getSmukFest1Turbulence(){
   var RetArray = [];
 
   RetArray = RetArray.concat(curvingBandPlot({'x':56.0257000, 'y':9.9214000}, 0.0005, 0.00055, 160, 200, 100));
-  
+
   RetArray = RetArray.concat(circlePlot({'x':56.0249500, 'y':9.9225000}, 0.00045, 0.00005, 100));
 
   RetArray = RetArray.concat(circlePlot({'x':56.0247500, 'y':9.9220000}, 0.00025, 0.00005, 100));
@@ -241,7 +241,7 @@ function getSmukFest1Turbulence(){
 
   RetArray = RetArray.concat(rectangularPlot({'x':56.0260000, 'y':9.9207500},{'x':56.0245000, 'y':9.9208500},100));
 
-  
+
   return RetArray;
 }
 
@@ -251,33 +251,33 @@ function getSmukFest2Density(){
   RetArray = RetArray.concat(rectangularPlot({'x':56.0253000, 'y':9.9212000},{'x':56.0252000, 'y':9.9216000}, 25));
   //RetArray = RetArray.concat(curvingBandPlot({'x':56.0257000, 'y':9.9214000}, 0.0004, 0.00045, 155, 215, 25));
 
-  return RetArray; 
+  return RetArray;
 }
 
 function getSmukFest2Turbulence(){
   var RetArray = [];
 
-  return RetArray; 
+  return RetArray;
 }
 
 function getParkenEntryDistribution0(){
-  var RetArray = [];  
+  var RetArray = [];
   RetArray = RetArray.concat(circlePlot({'x':55.702764,'y':12.569747},0.0005, 0.000075, 100)); //ParkCorner
-  RetArray = RetArray.concat(curvingBandPlot({'x':55.702546, 'y':12.572356}, 0.00092, 0.0012, 130, 235, 400)); //south corner outside 
+  RetArray = RetArray.concat(curvingBandPlot({'x':55.702546, 'y':12.572356}, 0.00092, 0.0012, 130, 235, 400)); //south corner outside
   RetArray = RetArray.concat(curvingBandPlot({'x':55.706507, 'y':12.573261}, 0.00485, 0.0051, 200, 220, 200)); //Oster Alle
   RetArray = RetArray.concat(circlePlot({'x':55.701900,'y':12.573300},0.00025, 0.00035, 750)); //East entrance
   return RetArray;
 }
 
 function getParkenEntryDistribution1(){
-  var RetArray = [];  
-  RetArray = RetArray.concat(curvingBandPlot({'x':55.702546, 'y':12.572356}, 0.00092, 0.0012, 130, 235, 50)); //south corner outside 
+  var RetArray = [];
+  RetArray = RetArray.concat(curvingBandPlot({'x':55.702546, 'y':12.572356}, 0.00092, 0.0012, 130, 235, 50)); //south corner outside
   RetArray = RetArray.concat(circlePlot({'x':55.701900,'y':12.573300},0.00015, 0.00025, 250)); //East entrance
   return RetArray;
 }
 
 function getParkenEntryDistribution2(){
-  var RetArray = [];  
+  var RetArray = [];
   RetArray = RetArray.concat(curvingBandPlot({'x':55.707500, 'y':12.575250}, 0.00485, 0.0051, 198, 215, 400)); //north longside stands
   RetArray = RetArray.concat(curvingBandPlot({'x':55.706767, 'y':12.573629}, 0.00485, 0.0051, 190, 215, 400)); //south longside stands
   RetArray = RetArray.concat(curvingBandPlot({'x':55.701860, 'y':12.572483}, 0.0015, 0.0018, 305, 345, 400)); //north broadside stands
@@ -287,7 +287,7 @@ function getParkenEntryDistribution2(){
 }
 
 function getParkenEntryDistribution3(){
-  var RetArray = [];  
+  var RetArray = [];
   RetArray = RetArray.concat(curvingBandPlot({'x':55.701860, 'y':12.572483}, 0.0015, 0.0016, 315, 335, 100)); //north broadside stands
   RetArray = RetArray.concat(curvingBandPlot({'x':55.707500, 'y':12.575250}, 0.00485, 0.0051, 198, 215, 50)); //north longside stands
   RetArray = RetArray.concat(curvingBandPlot({'x':55.706767, 'y':12.573629}, 0.00485, 0.0051, 190, 215, 50)); //south longside stands
@@ -321,7 +321,7 @@ function getSkewedDistribution(){
   RetArray = RetArray.concat(curvingBandPlot({'x':56.0257000, 'y':9.9214000}, 0.0008, 0.00085, 225, 235, 75));
 
   RetArray = RetArray.concat(curvingBandPlot({'x':56.0257000, 'y':9.9214000}, 0.00085, 0.0009, 130, 235, 75));
-  
+
   RetArray = RetArray.concat(circlePlot({'x':56.0249500, 'y':9.9225000}, 0.0005, 0.000075, 200));
   RetArray = RetArray.concat(circlePlot({'x':56.0249500, 'y':9.9225000}, 0.0009, 0.0001, 200));
 
@@ -333,7 +333,7 @@ function getSkewedDistribution(){
 
   RetArray = RetArray.concat(rectangularPlot({'x':56.0260000, 'y':9.9206700},{'x':56.0244800, 'y':9.9233900},500));
 
-  return RetArray; 
+  return RetArray;
 }
 
 function getPoints() {
@@ -360,9 +360,9 @@ function addOverlayType(over) {
     link.onclick = function(e) {
         e.preventDefault();
         e.stopPropagation();
-        
-        levels.forEach( 
-            function ( lev ) { 
+
+        levels.forEach(
+            function ( lev ) {
                 if ( activeLevelId == lev.levelId ) {
                     lev.layers.forEach( function (lay) {
                         if(lay.overlayId == over.overlayId) {
@@ -370,7 +370,7 @@ function addOverlayType(over) {
                                 lay.active = true;
                                 map.addLayer(lay.layer);
                                 link.className = 'active';
-                            } else { 
+                            } else {
                                 lay.active = false;
                                 map.removeLayer(lay.layer);
                                 link.className = '';
@@ -380,9 +380,9 @@ function addOverlayType(over) {
                 }
             }
         );
-        
+
         overlayTypes.forEach( function (layType) {
-                if(over.overlayId == layType.overlayId) { 
+                if(over.overlayId == layType.overlayId) {
                     layType.active = !layType.active;
                 }
             }
@@ -393,8 +393,8 @@ function addOverlayType(over) {
     layers1.appendChild(link);
 }
 
-function addLevel(level) { 
-    levels.push(level);  
+function addLevel(level) {
+    levels.push(level);
 
     var link = document.createElement('a');
         link.href = '#';
@@ -414,7 +414,7 @@ function addLevel(level) {
         e.preventDefault();
         e.stopPropagation();
 
-        if(activeLevelId != level.levelId) { 
+        if(activeLevelId != level.levelId) {
             var old = activeLevelId;
             link.className = 'active';
             activeLevelId = level.levelId;
@@ -429,9 +429,9 @@ function addLevel(level) {
                     } )
                     $("#level" + lev.levelId).attr('class', '');
                 }
-                if(lev.levelId == activeLevelId) { 
-                lev.layers.forEach( function ( lay ) { 
-                    overlayTypes.forEach( function ( typ ) { 
+                if(lev.levelId == activeLevelId) {
+                lev.layers.forEach( function ( lay ) {
+                    overlayTypes.forEach( function ( typ ) {
                             if(lay.overlayId == typ.overlayId && typ.active)
                             {
                                 lay.active = true;
@@ -441,7 +441,7 @@ function addLevel(level) {
                         } );
                     } );
                 }
-            } );                     
+            } );
         }
     }
 
@@ -452,8 +452,8 @@ mapboxgl.accessToken = 'pk.eyJ1IjoiemFuZGVyZGsiLCJhIjoiY2lrdGlwYTJnMDAwaHdvbTRjN
 var map = new mapboxgl.Map({
     container: 'map', // container id
     style: 'mapbox://styles/mapbox/streets-v8', //stylesheet location
-    center: [-74.50, 40], // starting position
-    zoom: 9 // starting zoom
+    center: [9.9205000, 56.0244000], // starting position
+    zoom: 15 // starting zoom
 });
 
 
@@ -464,7 +464,7 @@ var map = new mapboxgl.Map({
 //     var bounds = L.latLngBounds(southWest, northEast);
 //
 //     var map;
-// 	
+//
 // 	if(document.documentElement.clientWidth < 768){
 // 		map = L.mapbox.map('map', 'mapbox.streets', {
 // 			minZoom: 17,
@@ -482,7 +482,7 @@ var map = new mapboxgl.Map({
 // 	//.setView([56.0252000, 9.9220377], 17); //SmukFest
 //     L.control.fullscreen().addTo(map);
 //     map.fitBounds(bounds);
-    
+
     arr = getSmukFest1Density();
     heat = L.heatLayer(arr.map(function (e) { return e.latlng }), { radius:5,  maxZoom: 12, blur: 10 });
 
@@ -498,7 +498,7 @@ var map = new mapboxgl.Map({
 
     var overlayType0 = {active:false, overlayId:0, name:"Densitet" };
     var overlayType1 = {active:false, overlayId:1, name:"Turbulens" };
-    
+
     var level0 = { levelId: 0, layers: [ { active: false, overlayId:0, points:arr,  layer:heat }, { active: false, overlayId:1, points:arr2, layer:heat2 } ] };
     var level1 = { levelId: 1, layers: [ { active: false, overlayId:0, points:arr3, layer:heat3 }, { active: false, overlayId:1, points:arr4, layer:heat4 } ] };
 
@@ -506,8 +506,8 @@ var map = new mapboxgl.Map({
     addOverlayType(overlayType1);
     addLevel(level0);
     addLevel(level1);
-    
-    var test = update();
+
+    //var test = update();
 
     function update() {
     	arr = getParkenEntryDistribution0();
@@ -523,7 +523,7 @@ var map = new mapboxgl.Map({
     	heat4 = L.heatLayer(arr4.map(function (e) { return e.latlng }), {  gradient: {0.4: 'blue', 0.65: 'lime', 1: 'red'}, radius:5,  maxZoom: 12, blur: 10 });
         setTimeout(update, 1000);
     }
-    
+
 </script>
 </body>
 </html>
