@@ -448,13 +448,12 @@ function addLevel(level) {
 
 L.mapbox.accessToken = 'pk.eyJ1IjoiemFuZGVyZGsiLCJhIjoiY2lrdGlwYTJnMDAwaHdvbTRjNHF0OHFyMSJ9.HL6ah-cAwDso6lsDfXmVyA';
     //var map = L.mapbox.map('map', 'mapbox.streets').setView([55.702764, 12.572047], 17); //Parken
-    L.control.fullscreen().addTo(map);
     var southWest = [56.0244000, 9.9205000];
     var northEast = [56.0261000, 9.9234500];
     var bounds = L.latLngBounds(southWest, northEast);
 
     var map;
-
+	
 	if(document.documentElement.clientWidth < 768){
 		map = L.mapbox.map('map', 'mapbox.streets', {
 			minZoom: 17,
@@ -470,7 +469,8 @@ L.mapbox.accessToken = 'pk.eyJ1IjoiemFuZGVyZGsiLCJhIjoiY2lrdGlwYTJnMDAwaHdvbTRjN
 		});
 	}
 	//.setView([56.0252000, 9.9220377], 17); //SmukFest
-    map.fitBounds(bounds)
+    L.control.fullscreen().addTo(map);
+    map.fitBounds(bounds);
     
     arr = getSmukFest1Density();
     heat = L.heatLayer(arr.map(function (e) { return e.latlng }), { radius:5,  maxZoom: 12, blur: 10 });
