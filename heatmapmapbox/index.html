@@ -7,6 +7,8 @@
 <meta name="mobile-web-app-capable" content="yes"> <!-- Support for web app in chrome for Android -->
 <script src ="https://code.jquery.com/jquery-2.2.1.min.js"></script>
 <script src='https://api.mapbox.com/mapbox.js/v2.3.0/mapbox.js'></script>
+<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.15.0/mapbox-gl.js'></script>
+<link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.15.0/mapbox-gl.css' rel='stylesheet' />
 <link href='https://api.mapbox.com/mapbox.js/v2.3.0/mapbox.css' rel='stylesheet' />
 
 
@@ -446,31 +448,40 @@ function addLevel(level) {
     layers2.appendChild(link);
 }
 
-L.mapbox.accessToken = 'pk.eyJ1IjoiemFuZGVyZGsiLCJhIjoiY2lrdGlwYTJnMDAwaHdvbTRjNHF0OHFyMSJ9.HL6ah-cAwDso6lsDfXmVyA';
-    //var map = L.mapbox.map('map', 'mapbox.streets').setView([55.702764, 12.572047], 17); //Parken
-    var southWest = [56.0244000, 9.9205000];
-    var northEast = [56.0261000, 9.9234500];
-    var bounds = L.latLngBounds(southWest, northEast);
+mapboxgl.accessToken = 'pk.eyJ1IjoiemFuZGVyZGsiLCJhIjoiY2lrdGlwYTJnMDAwaHdvbTRjNHF0OHFyMSJ9.HL6ah-cAwDso6lsDfXmVyA';
+var map = new mapboxgl.Map({
+    container: 'map', // container id
+    style: 'mapbox://styles/mapbox/streets-v8', //stylesheet location
+    center: [-74.50, 40], // starting position
+    zoom: 9 // starting zoom
+});
 
-    var map;
-	
-	if(document.documentElement.clientWidth < 768){
-		map = L.mapbox.map('map', 'mapbox.streets', {
-			minZoom: 17,
-			maxZoom: 22,
-			maxBounds: bounds
-		});
-	}
-	else{
-		map = L.mapbox.map('map', 'mapbox.streets', {
-			minZoom: 18,
-			maxZoom: 22,
-			maxBounds: bounds
-		});
-	}
-	//.setView([56.0252000, 9.9220377], 17); //SmukFest
-    L.control.fullscreen().addTo(map);
-    map.fitBounds(bounds);
+
+// L.mapbox.accessToken = 'pk.eyJ1IjoiemFuZGVyZGsiLCJhIjoiY2lrdGlwYTJnMDAwaHdvbTRjNHF0OHFyMSJ9.HL6ah-cAwDso6lsDfXmVyA';
+//     //var map = L.mapbox.map('map', 'mapbox.streets').setView([55.702764, 12.572047], 17); //Parken
+//     var southWest = [56.0244000, 9.9205000];
+//     var northEast = [56.0261000, 9.9234500];
+//     var bounds = L.latLngBounds(southWest, northEast);
+//
+//     var map;
+// 	
+// 	if(document.documentElement.clientWidth < 768){
+// 		map = L.mapbox.map('map', 'mapbox.streets', {
+// 			minZoom: 17,
+// 			maxZoom: 22,
+// 			maxBounds: bounds
+// 		});
+// 	}
+// 	else{
+// 		map = L.mapbox.map('map', 'mapbox.streets', {
+// 			minZoom: 18,
+// 			maxZoom: 22,
+// 			maxBounds: bounds
+// 		});
+// 	}
+// 	//.setView([56.0252000, 9.9220377], 17); //SmukFest
+//     L.control.fullscreen().addTo(map);
+//     map.fitBounds(bounds);
     
     arr = getSmukFest1Density();
     heat = L.heatLayer(arr.map(function (e) { return e.latlng }), { radius:5,  maxZoom: 12, blur: 10 });
