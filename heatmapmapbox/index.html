@@ -100,6 +100,8 @@
 </head>
 <body>
 <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-heat/v0.1.3/leaflet-heat.js'></script>
+<script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/Leaflet.fullscreen.min.js'></script>
+<link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/leaflet.fullscreen.css' rel='stylesheet' />
 <div id='map'></div>
 <nav id='menu-ui' class='menu-ui'></nav>
 <nav id='menu-ui2' class='menu-ui2'></nav>
@@ -445,44 +447,10 @@ function addLevel(level) {
     layers2.appendChild(link);
 }
 
-function addFullscreenButton() {
-    var link = document.createElement('a');
-        link.href = '#';
-        //link.className = "icon-fullscreen";
-        link.style = "display:table;";
-
-
-    var iconChild = document.createElement('i');
-        iconChild.href = '#';
-                   iconChild.className = "fa fa-arrows-alt";
-                   iconChild.style = "display:table-cell;vertical-align:middle;text-align:center";
-
-    link.appendChild(iconChild);
-
-
-    link.onclick = function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        var doc = window.document;
-        var docEl = doc.documentElement;
-
-        var requestFullScreen = docEl.requestFullscreen || docEl.mozRequestFullScreen || docEl.webkitRequestFullScreen || docEl.msRequestFullscreen;
-        var cancelFullScreen = doc.exitFullscreen || doc.mozCancelFullScreen || doc.webkitExitFullscreen || doc.msExitFullscreen;
-
-        if(!doc.fullscreenElement && !doc.mozFullScreenElement && !doc.webkitFullscreenElement && !doc.msFullscreenElement) {
-          requestFullScreen.call(docEl);
-        }
-        else {
-          cancelFullScreen.call(doc);
-        }
-    }
-
-    document.getElementsByClassName("leaflet-control-zoom leaflet-bar leaflet-control")[0].appendChild(link);
-};
-
 L.mapbox.accessToken = 'pk.eyJ1IjoiemFuZGVyZGsiLCJhIjoiY2lrdGlwYTJnMDAwaHdvbTRjNHF0OHFyMSJ9.HL6ah-cAwDso6lsDfXmVyA';
     //var map = L.mapbox.map('map', 'mapbox.streets').setView([55.702764, 12.572047], 17); //Parken
     var map = L.mapbox.map('map', 'mapbox.streets').setView([56.0252000, 9.9220377], 17); //SmukFest
+L.control.fullscreen().addTo(map);
 
     arr = getSmukFest1Density();
     heat = L.heatLayer(arr.map(function (e) { return e.latlng }), { radius:5,  maxZoom: 12, blur: 10 });
@@ -507,7 +475,6 @@ L.mapbox.accessToken = 'pk.eyJ1IjoiemFuZGVyZGsiLCJhIjoiY2lrdGlwYTJnMDAwaHdvbTRjN
     addOverlayType(overlayType1);
     addLevel(level0);
     addLevel(level1);
-    addFullscreenButton();
     
     var test = update();
 
